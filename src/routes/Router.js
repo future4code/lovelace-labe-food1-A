@@ -9,7 +9,8 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import RestaurantDetails from "../pages/RestaurantDetails";
 import Signup from "../pages/Signup";
-import SignupAddress from "../pages/SignupAdress";
+import SignupAddress from "../pages/SignupAddress";
+
 
 const Router = () => {
     return (
