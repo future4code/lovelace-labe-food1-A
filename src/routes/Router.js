@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Cart from "../pages/Cart";
 import EditAddress from "../pages/EditAddress";
 import EditProfile from "../pages/EditProfile";
@@ -14,7 +13,6 @@ import SignupAddress from "../pages/SignupAddress";
 
 const Router = () => {
     return (
-        <BrowserRouter>
             <Switch>
                 <Route exact path="/login" >
                     <Login />
@@ -47,7 +45,6 @@ const Router = () => {
                     <div>Erro - Página não encontrada</div>
                 </Route>
             </Switch>
-        </BrowserRouter>
     );
 };
 
