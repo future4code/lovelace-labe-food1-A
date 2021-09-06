@@ -4,14 +4,14 @@ export const useCoordinator = () => {
   let history = useHistory()
   const goTo = {
     Cart: () => history.push('/cart'),
-    EditAdress: () => history.push('/cadastro'),
-    EditProfile: () => history.push('/adicionar-receita'),
+    EditAdress: () => history.push('/profile/edit-address'),
+    EditProfile: () => history.push('/profile/edit-profile'),
     Home: () => history.push('/'),
     Login: () => history.push('/login'),
     Profile: () => history.push('/profile'),
-    RestaurantDetail: () => history.push('/'),
+    RestaurantDetail: (id) => history.push(`/restaurants/${id}`),
     SignUp: () => history.push('/signup'),
-    SignUpAdress: () => history.push('/signupadress'),
+    SignUpAdress: () => history.push('/signup-address'),
   }
 
   return { goTo }
