@@ -8,4 +8,5 @@ export const Footer = styled.footer`
     justify-items:center;
     position:absolute;
     width:100%;
+    border-top:1px solid #BFBFBF;
 `

@@ -14,5 +14,5 @@ export const useCoordinator = () => {
     SignUpAdress: () => history.push('/signup-address'),
   }
 
-  return { goTo }
+  return goTo
 }
