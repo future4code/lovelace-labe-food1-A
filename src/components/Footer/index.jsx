@@ -7,6 +7,7 @@ const Footer = () => {
   const goTo = useCoordinator();
   return (
     <S.Footer>
+
       <IconButton title={'Retornar para Página Principal'} onClick={goTo.Home} aria-label="home">
         <img src={"https://cdn.zeplin.io/5dd5ae92669af1bc817c8359/assets/665B3253-0B10-4DA6-ADB0-B764A98E9A47.svg"}/>
       </IconButton>
