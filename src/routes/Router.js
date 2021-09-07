@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import RestaurantDetails from "../pages/RestaurantDetails";
+import Search from '../pages/Search';
 import Signup from "../pages/Signup";
 import SignupAddress from "../pages/SignupAddress";
 
@@ -25,6 +26,9 @@ const Router = () => {
                 </Route>
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route exact path="/search">
+                    <Search/>
                 </Route>
                 <Route exact path="/restaurants/:restaurantId" >
                     <RestaurantDetails />

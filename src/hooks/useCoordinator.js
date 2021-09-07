@@ -12,6 +12,7 @@ export const useCoordinator = () => {
     RestaurantDetail: (id) => history.push(`/restaurants/${id}`),
     SignUp: () => history.push('/signup'),
     SignUpAdress: () => history.push('/signup-address'),
+    Search: () => history.push('/search'),
   }
 
   return goTo
