@@ -13,7 +13,7 @@ const AddressForm = () => {
 
   return (
     <S.AddressFormContainer>
-      <form onSubmit={onSubmitAddressForm} noValidate autoComplete="off">
+      <form onSubmit={onSubmitAddressForm} autoComplete="off">
         <TextField
           name={"street"}
           value={form.street}
