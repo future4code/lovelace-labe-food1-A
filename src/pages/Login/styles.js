@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const LoginFormContainer = styled.div`
   display: grid;
   place-items: center;
-  /* width: 20.5rem; */
 
   button{
     margin-top: 1rem;

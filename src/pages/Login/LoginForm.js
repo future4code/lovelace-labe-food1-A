@@ -3,17 +3,19 @@ import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import * as S from './styles'
+import { login } from '../../services/users';
 
 const LoginForm = () => {
   const [form, onChange, clear] = useForm({ email: "", password: "" })
 
   const onSubmitLoginForm = (event) => {
     event.preventDefault()
+    login(form, clear)
   }
 
   return (
     <S.LoginFormContainer>
-      <form onSubmit={onSubmitLoginForm} noValidate autoComplete="off">
+      <form onSubmit={onSubmitLoginForm} autoComplete="off">
         <TextField
           name={"email"}
           value={form.email}
