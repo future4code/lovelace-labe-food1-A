@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import useForm from '../../hooks/useForm'
 import * as S from './styles'
+import useSignupAddress from '../../services/useSignupAddress'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const AddressForm = () => {
-  const [form, onChange, clear] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
+  const [form, onChange] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
+  const signupAddress = useSignupAddress(form)
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSubmitAddressForm = (event) => {
     event.preventDefault()
+    signupAddress(setIsLoading)
   }
 
   return (
@@ -111,7 +116,7 @@ const AddressForm = () => {
           fullWidth
           color={"primary"}
         >
-          Salvar
+          {isLoading ? <CircularProgress color={"inherit"} size={24} /> : <>Salvar</>}
         </Button>
       </form>
     </S.AddressFormContainer>
