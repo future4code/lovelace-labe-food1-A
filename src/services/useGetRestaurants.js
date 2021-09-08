@@ -1,23 +1,32 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import URL_BASE from '../constants/urlBase'
+import { GlobalContext } from '../contexts/GlobalContext'
 
-const useGetRestaurants = (header) => {
-  const [data, setData] = useState(undefined)
+
+const useGetRestaurants = () => {
+
+  const { setRestaurants } = React.useContext(GlobalContext)
   const [error, setError] = useState('')
 
   let response
-  const getRestaurants = async () => {
+  const getRestaurants = async (token) => {
+    const headers = {
+      headers: {
+        ContentType: 'application/json',
+        auth: token,
+      },
+    }
     try {
-      response = await axios.get(`${URL_BASE}/restaurants`, header)
+      response = await axios.get(`${URL_BASE}/restaurants`, headers)
     } catch (err) {
-      setError(err.response.data.message)
+      setError(err?.response?.data?.message)
     } finally {
-      setData(response.data)
+      setRestaurants(response?.data?.restaurants)
     }
   }
 
-  return {data, error, getRestaurants}
+  return { error, getRestaurants}
 }
 
 export default useGetRestaurants
