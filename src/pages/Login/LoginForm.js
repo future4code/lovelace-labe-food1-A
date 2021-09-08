@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState} from 'react'
 import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import * as S from './styles'
-import { login } from '../../services/users';
+import useLogin from '../../services/useLogin'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const LoginForm = () => {
-  const [form, onChange, clear] = useForm({ email: "", password: "" })
+  const [form, onChange] = useForm({ email: "", password: "" })
+  const login = useLogin(form)
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSubmitLoginForm = (event) => {
     event.preventDefault()
-    login(form, clear)
+    login(setIsLoading)
   }
 
   return (
@@ -52,7 +55,7 @@ const LoginForm = () => {
           color="primary"
           fullWidth
         >
-          Entrar
+          {isLoading? <CircularProgress color={"inherit"} size={24}/> : <>Entrar</>}
         </Button>
       </form>
     </S.LoginFormContainer>
