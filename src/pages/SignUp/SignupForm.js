@@ -89,7 +89,8 @@ const SignupForm = () => {
           fullWidth
           margin={"normal"}
           placeholder={"000.000.000-00"}
-          inputProps={{ pattern: (/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/) }}
+          inputProps={{ pattern: "[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" }}
+          // inputProps={{ pattern: "/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/" }}
           InputLabelProps={{
             shrink: true,
           }}
