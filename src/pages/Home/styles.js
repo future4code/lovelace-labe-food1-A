@@ -51,3 +51,7 @@ export const Home = styled.div`
     overflow: auto;
   }
 `;
+
+export const Error = styled.p`
+  text-align: center;
+`

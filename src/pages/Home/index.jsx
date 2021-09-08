@@ -7,21 +7,19 @@ import search from '../../assets/search.svg';
 import { useCoordinator } from '../../hooks/useCoordinator';
 import RestaurantCard from './RestaurantCard';
 import useGetRestaurants from '../../services/useGetRestaurants';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const Home = () => {
-  const headers = {
-    headers: {
-      ContentType: 'application/json',
-      auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxVWUxUUJ5Nm9EQ3JFVklMR1VCIiwibmFtZSI6IkNsZWl0b24iLCJlbWFpbCI6ImNsZWl0b25AZ21haWwuY29tIiwiY3BmIjoiMTExLjExMS4xMTEtMTkiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUi4gQWZvbnNvIEJyYXosIDE3NywgNzEgLSBWaWxhIE4uIENvbmNlacOnw6NvIiwiaWF0IjoxNjMxMDQ5MTMxfQ.51E_mfnn2LyYePtgj6657ief5ft6f23JUl9l2xDUZuk',
-    },
-  };
-  const { getRestaurants, data } = useGetRestaurants(headers);
+  const { restaurants } = React.useContext(GlobalContext);
+  const token = localStorage.getItem('token');
+
+  const { getRestaurants, error } = useGetRestaurants();
   const goTo = useCoordinator();
 
   useEffect(() => {
-    getRestaurants();
+    getRestaurants(token);
   }, []);
-  console.log(data?.restaurants);
+
   return (
     <S.Home>
       <Header backButton title={'Rappi4'} />
@@ -31,23 +29,29 @@ const Home = () => {
           <span>Restaurante</span>
         </S.SearchBar>
 
-        <S.Carousel>
-          <span>Burguer</span>
-          <span>Asiática</span>
-          <span>Massas</span>
-          <span>Saudáveis</span>
-        </S.Carousel>
+        {error && <S.Error>{error}</S.Error>}
 
-        {data?.restaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.id}
-            name={restaurant.name}
-            deliveryTime={restaurant.deliveryTime}
-            shipping={restaurant.shipping}
-            logoUrl={restaurant.logoUrl}
-          />
-        ))}
+        {restaurants && (
+          <>
+            <S.Carousel>
+              <span>Burguer</span>
+              <span>Asiática</span>
+              <span>Massas</span>
+              <span>Saudáveis</span>
+            </S.Carousel>
 
+            {restaurants?.map((restaurant) => (
+              <RestaurantCard
+                onClick={()=> goTo.RestaurantDetail(restaurant.id)}
+                key={restaurant.id}
+                name={restaurant.name}
+                deliveryTime={restaurant.deliveryTime}
+                shipping={restaurant.shipping}
+                logoUrl={restaurant.logoUrl}
+              />
+            ))}
+          </>
+        )}
       </main>
       <Footer />
     </S.Home>
