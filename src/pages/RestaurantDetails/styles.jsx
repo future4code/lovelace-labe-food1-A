@@ -46,5 +46,8 @@ export const Title = styled.p`
 export const DoubleInfos = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  p:nth-child(1){
+    margin-right: 3rem;
+  }
 `;
+

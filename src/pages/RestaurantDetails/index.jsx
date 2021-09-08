@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import useGetDetails from '../../services/useGetDetails';
 import categories from '../../constants/categories';
+import ProductCard from './ProductCard';
 
 const RestaurantDetails = () => {
   const { restaurantId } = useParams();
@@ -54,8 +55,15 @@ const RestaurantDetails = () => {
           {returnFilteredProducts().map((array, index) => (
             <div key={index}>
               <h2>{array[0].category}</h2>
+              <hr />
               {array.map((product) => (
-                <p key={product.id}>{product.name}</p>
+                <ProductCard
+                  key={product.id}
+                  photoUrl={product.photoUrl}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                />
               ))}
             </div>
           ))}
