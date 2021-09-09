@@ -18,9 +18,12 @@ export const Profile = styled.div`
     background-color: #eeeeee;
 
      p:nth-child(1){
+       display: flex;
+       justify-content: space-between;
        color: #b8b8b8;
        padding: 1rem 1rem 0 1rem;
        margin-bottom: 0.5rem;
+       margin-right: 0.5rem;
      }
      p:nth-child(2){
       padding: 0 1rem 1rem 1rem;

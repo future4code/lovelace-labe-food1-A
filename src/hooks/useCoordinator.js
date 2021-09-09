@@ -4,7 +4,7 @@ export const useCoordinator = () => {
   let history = useHistory()
   const goTo = {
     Cart: () => history.push('/cart'),
-    EditAdress: () => history.push('/profile/edit-address'),
+    EditAddress: () => history.push('/profile/edit-address'),
     EditProfile: () => history.push('/profile/edit-profile'),
     Home: () => history.push('/'),
     Login: () => history.push('/login'),
