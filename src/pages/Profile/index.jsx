@@ -44,9 +44,9 @@ const Profile = () => {
 
   const convertDate = (timestamp) => {
     let time = new Date(timestamp)
-    let day = time.getDate().toString().padStart(2, '0');
-    let month = (time.getMonth() + 1).toString().padStart(2, '0');
-    let year = time.getFullYear();
+    let day = time.getDate().toString().padStart(2, '0')
+    let month = (time.getMonth() + 1).toString().padStart(2, '0')
+    let year = time.getFullYear()
 
     return `${day}/${month}/${year}`
   }
@@ -56,7 +56,7 @@ const Profile = () => {
       <S.OrderHistoryCard>
         <p>{order.restaurantName}</p>
         <p>{convertDate(order.createdAt)}</p>
-        <p>SUBTOTAL R${order.totalPrice},00</p>
+        <p>SUBTOTAL R${order.totalPrice.toFixed(2).replace('.', ',')}</p>
       </S.OrderHistoryCard>
     )
   }) : <p style={{ textAlign: "center" }}>Você não realizou nenhum pedido</p>
@@ -69,18 +69,17 @@ const Profile = () => {
     getOrdersHistory()
   }, [])
 
-
   return (
     <S.Profile>
       <Header title={"Meu perfil"} />
       <main>
         <S.UserData>
-          <p>{user.name} <img onClick={goTo.EditProfile}src={Edit} alt={"Ícone de edit"}/></p>
+          <p>{user.name} <img onClick={goTo.EditProfile} src={Edit} alt={"Ícone de edit"} /></p>
           <p>{user.email}</p>
           <p>{user.cpf}</p>
         </S.UserData>
         <section>
-          <p>Endereço cadastrado <img onClick={goTo.EditAddress}src={Edit} alt={"Ícone de edit"}/></p>
+          <p>Endereço cadastrado <img onClick={goTo.EditAddress} src={Edit} alt={"Ícone de edit"} /></p>
           <p>{user.address}</p>
         </section>
         <S.UserOrderHistory>

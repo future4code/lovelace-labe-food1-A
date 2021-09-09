@@ -9,10 +9,9 @@ import axios from 'axios'
 import URL_BASE from '../../constants/urlBase'
 
 const EditAddressForm = () => {
-  const [form, onChange, setForm] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "", address: {}})
+  const [form, onChange, clear, setForm] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
   const addAddress = useAddAddress(form)
   const [isLoading, setIsLoading] = useState(false)
-  // const [address, setAddress] = useState({})
 
   const onSubmitAddressForm = (event) => {
     event.preventDefault()
@@ -25,13 +24,12 @@ const EditAddressForm = () => {
         auth: localStorage.getItem("token")
       }
     })
-    .then((response) => {
-      console.log(response.data.address)
-      setForm(response.data.address)
-    })
-    .catch((err) => {
-      console.log(err.response)
-    })
+      .then((response) => {
+        setForm({ street: response.data.address.street, number: response.data.address.number, apartment: response.data.address.apartment, neighbourhood: response.data.address.neighbourhood, city: response.data.address.city, state: response.data.address.state })
+      })
+      .catch((err) => {
+        alert(err.response)
+      })
   }
 
   useEffect(() => {
@@ -43,7 +41,7 @@ const EditAddressForm = () => {
       <form onSubmit={onSubmitAddressForm} autoComplete="off">
         <TextField
           name={"street"}
-          value={form.address.street}
+          value={form.street}
           onChange={onChange}
           type={"text"}
           label={"Endereço"}

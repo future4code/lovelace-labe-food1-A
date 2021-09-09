@@ -15,11 +15,10 @@ const useAddAddress = (body) => {
       .then((response) => {
         localStorage.setItem("token", response.data.token)
         goTo.Profile()
-        console.log(response.data)
         setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err.response)
+        alert(err.response)
         setIsLoading(false)
       })
   }

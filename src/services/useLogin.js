@@ -13,8 +13,8 @@ const useLogin = (body) => {
         goTo.Home()
         setIsLoading(false)
       })
-      .catch(() => {
-        alert("Não foi possível fazer login")
+      .catch((err) => {
+        alert(err.response.data.message)
         setIsLoading(false)
       })
   }
