@@ -3,8 +3,8 @@ import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import useGetDetails from '../../services/useGetDetails';
-import categories from '../../constants/categories';
-import ProductCard from './ProductCard';
+import { categoriesMeals } from '../../constants/categories';
+import ProductCard from '../../components/ProductCard';
 
 const RestaurantDetails = () => {
   const { restaurantId } = useParams();
@@ -22,14 +22,12 @@ const RestaurantDetails = () => {
 
   const returnFilteredProducts = () => {
     let filteredProducts = [];
-    for (const category of categories) {
+    for (const category of categoriesMeals) {
       filterMeal(category).length > 0 &&
         filteredProducts.push(filterMeal(category));
     }
     return filteredProducts;
   };
-
-  console.log(returnFilteredProducts());
 
   return (
     <S.DetailsContainer>
