@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import useGetDetails from '../../services/useGetDetails';
 import { categoriesMeals } from '../../constants/categories';
-import ProductCard from './ProductCard';
+import ProductCard from '../../components/ProductCard';
 
 const RestaurantDetails = () => {
   const { restaurantId } = useParams();

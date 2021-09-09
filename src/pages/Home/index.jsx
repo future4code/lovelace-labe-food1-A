@@ -5,16 +5,23 @@ import OrderInProgressCard from '../../components/OrderInProgressCard';
 import * as S from './styles';
 import search from '../../assets/search.svg';
 import { useCoordinator } from '../../hooks/useCoordinator';
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard from '../../components/RestaurantCard';
 import useGetRestaurants from '../../services/useGetRestaurants';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { categoriesRestaurants } from '../../constants/categories';
+import useForm from '../../hooks/useForm';
 
 const Home = () => {
+  const { restaurants } = React.useContext(GlobalContext);
+  const [form, handleInputChange, clear] = useForm({ search: '' });
+  const token = localStorage.getItem('token');
+
   const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
     useState('Todos');
-  const { restaurants } = React.useContext(GlobalContext);
-  const token = localStorage.getItem('token');
+
+  const RestaurantsSearch = restaurants?.filter((restaurant) =>
+    restaurant.name.startsWith(form.search)
+  );
 
   const { getRestaurants, error } = useGetRestaurants();
   const goTo = useCoordinator();
@@ -24,16 +31,25 @@ const Home = () => {
   }, []);
 
   const filteredRestaurants = (category) => {
-    return restaurants.filter((restaurant) => restaurant.category === category);
+    return restaurants?.filter((restaurant) => restaurant.category === category);
   };
 
   return (
     <S.Home>
       <Header backButton title={'Rappi4'} />
       <main>
-        <S.SearchBar onClick={goTo.Search}>
+        <S.SearchBar>
           <img src={search} alt='Pesquisar' />
-          <span>Restaurante</span>
+          <form autocomplete='off'>
+            <S.InputSearch
+              type='text'
+              placeholder='Restaurante'
+              autoFocus
+              value={form.search}
+              onChange={handleInputChange}
+              name={'search'}
+            />
+          </form>
         </S.SearchBar>
 
         {error && <S.Error>{error}</S.Error>}
@@ -41,7 +57,7 @@ const Home = () => {
         {restaurants && (
           <>
             <S.Carousel>
-              {categoriesRestaurants.map((category) => (
+              {categoriesRestaurants?.map((category) => (
                 <S.Categories
                   key={category}
                   onClick={() => setRestaurantCategoryFilter(category)}
@@ -53,19 +69,8 @@ const Home = () => {
               ))}
             </S.Carousel>
 
-            {filteredRestaurants(restaurantCategoryFilter).map((restaurant) => (
-              <RestaurantCard
-                onClick={() => goTo.RestaurantDetail(restaurant.id)}
-                key={restaurant.id}
-                name={restaurant.name}
-                deliveryTime={restaurant.deliveryTime}
-                shipping={restaurant.shipping}
-                logoUrl={restaurant.logoUrl}
-              />
-            ))}
-
             {restaurantCategoryFilter === 'Todos' &&
-              restaurants?.map((restaurant) => (
+              RestaurantsSearch?.map((restaurant) => (
                 <RestaurantCard
                   onClick={() => goTo.RestaurantDetail(restaurant.id)}
                   key={restaurant.id}
@@ -75,6 +80,30 @@ const Home = () => {
                   logoUrl={restaurant.logoUrl}
                 />
               ))}
+
+            {form?.search?.length == 0 &&
+              filteredRestaurants(restaurantCategoryFilter).map(
+                (restaurant) => (
+                  <RestaurantCard
+                    onClick={() => goTo.RestaurantDetail(restaurant.id)}
+                    key={restaurant.id}
+                    name={restaurant.name}
+                    deliveryTime={restaurant.deliveryTime}
+                    shipping={restaurant.shipping}
+                    logoUrl={restaurant.logoUrl}
+                  />
+                )
+              )}
+
+            {RestaurantsSearch?.length == 0 &&
+              form?.search?.length > 0 &&
+              filteredRestaurants(restaurantCategoryFilter).length === 0 && (
+                <p>Não encontramos </p>
+              )}
+
+            {restaurantCategoryFilter !== 'Todos' && form.search.length > 0 && (
+              <p>Faça uma busca na categoria "Todos".</p>
+            )}
           </>
         )}
       </main>

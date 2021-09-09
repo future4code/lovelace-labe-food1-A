@@ -6,9 +6,7 @@ export const DetailsContainer = styled.div`
   max-height: 100vh;
   width: 100%;
   height: 100vh;
-  main {
-    overflow: auto;
-  }
+  
 `;
 
 export const RestaurantCover = styled.div`
