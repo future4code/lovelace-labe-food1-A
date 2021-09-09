@@ -15,13 +15,13 @@ export const categoriesRestaurants = [
   "Todos",
   "Árabe",
   "Asiática",
+  "Baiana",
+  "Carnes",
   "Hamburguer",
   "Italiana",
-  "Sorvetes",
-  "Carnes",
-  "Baiana",
-  "Petiscos",
   "Mexicana",
+  "Petiscos",
+  "Sorvetes",
 ]
 
 

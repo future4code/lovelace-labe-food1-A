@@ -23,7 +23,6 @@ const Home = () => {
     getRestaurants(token);
   }, []);
 
-
   const filteredRestaurants = (category) => {
     return restaurants.filter((restaurant) => restaurant.category === category);
   };
@@ -43,12 +42,14 @@ const Home = () => {
           <>
             <S.Carousel>
               {categoriesRestaurants.map((category) => (
-                <span
+                <S.Categories
                   key={category}
                   onClick={() => setRestaurantCategoryFilter(category)}
+                  currentCategory={restaurantCategoryFilter}
+                  categoryName={category}
                 >
                   {category}
-                </span>
+                </S.Categories>
               ))}
             </S.Carousel>
 

@@ -21,24 +21,25 @@ export const SearchBar = styled.div`
 `;
 export const Carousel = styled.div`
   width: auto;
+  max-width: 328px;
   overflow: overlay;
   display: flex;
   align-items: center;
   height: auto;
-  padding: 12px 0 12px 16px;
-  margin: 0.5rem;
-  
+  padding: 12px 0 12px 0;
+  margin: 0.5rem auto;
+  box-sizing: border-box;
+
   ::-webkit-scrollbar {
     display: none;
   }
-  
-  span {
-    margin: 0 1.4rem;
-    text-align: center;
-    :visited{
-      color: #e86e5a;
-    }
-  }
+`;
+
+export const Categories = styled.span`
+  cursor: pointer;
+  margin: 0 2.8rem 0 0;
+  color: ${(props) =>
+    props.currentCategory === props.categoryName ? '#e86e5a' : '#000'};
 `;
 
 export const Home = styled.div`
@@ -54,4 +55,4 @@ export const Home = styled.div`
 
 export const Error = styled.p`
   text-align: center;
-`
+`;
