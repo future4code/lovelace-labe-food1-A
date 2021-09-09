@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import OrderInProgressCard from '../../components/OrderInProgressCard';
@@ -8,8 +8,11 @@ import { useCoordinator } from '../../hooks/useCoordinator';
 import RestaurantCard from './RestaurantCard';
 import useGetRestaurants from '../../services/useGetRestaurants';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { categoriesRestaurants } from '../../constants/categories';
 
 const Home = () => {
+  const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
+    useState('Todos');
   const { restaurants } = React.useContext(GlobalContext);
   const token = localStorage.getItem('token');
 
@@ -19,6 +22,11 @@ const Home = () => {
   useEffect(() => {
     getRestaurants(token);
   }, []);
+
+
+  const filteredRestaurants = (category) => {
+    return restaurants.filter((restaurant) => restaurant.category === category);
+  };
 
   return (
     <S.Home>
@@ -34,15 +42,19 @@ const Home = () => {
         {restaurants && (
           <>
             <S.Carousel>
-              <span>Burguer</span>
-              <span>Asiática</span>
-              <span>Massas</span>
-              <span>Saudáveis</span>
+              {categoriesRestaurants.map((category) => (
+                <span
+                  key={category}
+                  onClick={() => setRestaurantCategoryFilter(category)}
+                >
+                  {category}
+                </span>
+              ))}
             </S.Carousel>
 
-            {restaurants?.map((restaurant) => (
+            {filteredRestaurants(restaurantCategoryFilter).map((restaurant) => (
               <RestaurantCard
-                onClick={()=> goTo.RestaurantDetail(restaurant.id)}
+                onClick={() => goTo.RestaurantDetail(restaurant.id)}
                 key={restaurant.id}
                 name={restaurant.name}
                 deliveryTime={restaurant.deliveryTime}
@@ -50,6 +62,18 @@ const Home = () => {
                 logoUrl={restaurant.logoUrl}
               />
             ))}
+
+            {restaurantCategoryFilter === 'Todos' &&
+              restaurants?.map((restaurant) => (
+                <RestaurantCard
+                  onClick={() => goTo.RestaurantDetail(restaurant.id)}
+                  key={restaurant.id}
+                  name={restaurant.name}
+                  deliveryTime={restaurant.deliveryTime}
+                  shipping={restaurant.shipping}
+                  logoUrl={restaurant.logoUrl}
+                />
+              ))}
           </>
         )}
       </main>

@@ -6,6 +6,8 @@ export const SignupAddressContainer = styled.div`
     align-items: center;
     width: 23rem;
     margin: 16px auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
 
     h1{
       font-size: 1rem;

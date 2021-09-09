@@ -1,4 +1,4 @@
-const categories = [
+export const categoriesMeals = [
   "Refeição",
   "Pizza",
   "Lanche",
@@ -11,5 +11,17 @@ const categories = [
   "Outros",
 ]
 
-export default categories
+export const categoriesRestaurants = [
+  "Todos",
+  "Árabe",
+  "Asiática",
+  "Hamburguer",
+  "Italiana",
+  "Sorvetes",
+  "Carnes",
+  "Baiana",
+  "Petiscos",
+  "Mexicana",
+]
+
 
