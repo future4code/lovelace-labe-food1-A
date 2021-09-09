@@ -1,27 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import useForm from '../../hooks/useForm'
 import * as S from './styles'
-import useSignupAddress from '../../services/useSignupAddress'
+import useAddAddress from '../../services/useAddAddress'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import axios from 'axios'
+import URL_BASE from '../../constants/urlBase'
 
-const AddressForm = () => {
-  const [form, onChange] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
-  const signupAddress = useSignupAddress(form)
+const EditAddressForm = () => {
+  const [form, onChange, setForm] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "", address: {}})
+  const addAddress = useAddAddress(form)
   const [isLoading, setIsLoading] = useState(false)
+  // const [address, setAddress] = useState({})
 
-  const onSubmitEditAddress= (event) => {
+  const onSubmitAddressForm = (event) => {
     event.preventDefault()
-    signupAddress(setIsLoading)
+    addAddress(setIsLoading)
   }
+
+  const getFullAddress = () => {
+    axios.get(`${URL_BASE}/profile/address`, {
+      headers: {
+        auth: localStorage.getItem("token")
+      }
+    })
+    .then((response) => {
+      console.log(response.data.address)
+      setForm(response.data.address)
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
+  }
+
+  useEffect(() => {
+    getFullAddress()
+  }, [])
 
   return (
     <S.AddressFormContainer>
-      <form onSubmit={onSubmitEditAddress} autoComplete="off">
+      <form onSubmit={onSubmitAddressForm} autoComplete="off">
         <TextField
           name={"street"}
-          value={form.street}
+          value={form.address.street}
           onChange={onChange}
           type={"text"}
           label={"Endereço"}
@@ -123,4 +145,4 @@ const AddressForm = () => {
   )
 }
 
-export default AddressForm
+export default EditAddressForm
