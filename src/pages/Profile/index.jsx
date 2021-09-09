@@ -80,7 +80,7 @@ const Profile = () => {
           <p>{user.cpf}</p>
         </S.UserData>
         <section>
-          <p>Endereço cadastrado</p>
+          <p>Endereço cadastrado <img onClick={goTo.EditAddress}src={Edit} alt={"Ícone de edit"}/></p>
           <p>{user.address}</p>
         </section>
         <S.UserOrderHistory>
