@@ -32,36 +32,31 @@ const Profile = () => {
   };
 
   const convertDate = (timestamp) => {
-    let time = new Date(timestamp);
-    let day = time.getDate().toString().padStart(2, '0');
-    let month = (time.getMonth() + 1).toString().padStart(2, '0');
-    let year = time.getFullYear();
+    let time = new Date(timestamp)
+    let day = time.getDate().toString().padStart(2, '0')
+    let month = (time.getMonth() + 1).toString().padStart(2, '0')
+    let year = time.getFullYear()
 
     return `${day}/${month}/${year}`;
   };
 
-  const showOrders =
-    orders.length > 0 ? (
-      orders.map((order) => {
-        return (
-          <S.OrderHistoryCard>
-            <p>{order.restaurantName}</p>
-            <p>{convertDate(order.createdAt)}</p>
-            <p>SUBTOTAL R${order.totalPrice},00</p>
-          </S.OrderHistoryCard>
-        );
-      })
-    ) : (
-      <p style={{ textAlign: 'center' }}>Você não realizou nenhum pedido</p>
-    );
+  const showOrders = orders.length > 0 ? orders.map((order) => {
+    return (
+      <S.OrderHistoryCard>
+        <p>{order.restaurantName}</p>
+        <p>{convertDate(order.createdAt)}</p>
+        <p>SUBTOTAL R${order.totalPrice.toFixed(2).replace('.', ',')}</p>
+      </S.OrderHistoryCard>
+    )
+  }) : <p style={{ textAlign: "center" }}>Você não realizou nenhum pedido</p>
 
   useEffect(() => {
     getProfile();
   }, []);
 
   useEffect(() => {
-    getOrdersHistory();
-  }, []);
+    getOrdersHistory()
+  }, [])
 
   return (
     <S.Profile>
@@ -69,7 +64,7 @@ const Profile = () => {
       <main>
         <S.UserData>
           <p>
-            {profile.name}{' '}
+            {profile.name}
             <img onClick={goTo.EditProfile} src={Edit} alt={'Ícone de edit'} />
           </p>
           <p>{profile.email}</p>
@@ -77,7 +72,7 @@ const Profile = () => {
         </S.UserData>
         <section>
           <p>
-            Endereço cadastrado{' '}
+            Endereço cadastrado
             <img onClick={goTo.EditAddress} src={Edit} alt={'Ícone de edit'} />
           </p>
           <p>{profile.address}</p>
