@@ -12,11 +12,10 @@ const useOrdersHistory = () => {
       }
     })
     .then((response) => {
-      console.log(response)
       setOrders(response.data)
     })
     .catch((err) => {
-      console.log(err.response)
+      alert(err.response.data.message)
     })
   }
   return getOrdersHistory

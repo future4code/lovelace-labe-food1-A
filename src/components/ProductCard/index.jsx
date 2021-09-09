@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './styles';
 
-const ProductCard = ({photoUrl, name, description, price}) => {
+const ProductCard = ({photoUrl, name, description, price, onClick}) => {
   return (
-    <S.ProductCard>
+    <S.ProductCard onClick={onClick}>
       <S.Image img={photoUrl}/>
       <S.Infos>
         <S.Name>{name}</S.Name>

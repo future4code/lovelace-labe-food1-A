@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import * as S from './styles';
+import useGetProfile from '../../services/useGetProfile';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const Cart = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  const { profile } = React.useContext(GlobalContext);
+  const { getProfile } = useGetProfile();
+  useEffect(() => {
+    getProfile();
+  }, []);
 
-export default Cart
+  return (
+    <S.Cart>
+      <Header title='Meu carrinho' />
+      <main>
+        <div>
+          <p>Endereço de entrega</p>
+          <p>{profile.address}</p>
+        </div>
+      </main>
+      <Footer page='cart' />
+    </S.Cart>
+  );
+};
+
+export default Cart;

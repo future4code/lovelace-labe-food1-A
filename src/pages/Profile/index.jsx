@@ -3,30 +3,18 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import * as S from './styles';
 import axios from 'axios';
-import { URL_BASE } from '../../constants/urls';
+import URL_BASE from '../../constants/urlBase';
 import Edit from '../../assets/edit.svg';
 import { useCoordinator } from '../../hooks/useCoordinator';
+import useGetProfile from '../../services/useGetProfile'
+import { GlobalContext } from '../../contexts/GlobalContext'
+
 
 const Profile = () => {
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState([]);
   const goTo = useCoordinator();
-
-  const getProfile = () => {
-    axios
-      .get(`${URL_BASE}/profile`, {
-        headers: {
-          auth: localStorage.getItem('token'),
-        },
-      })
-      .then((response) => {
-        console.log(response.data.user);
-        setUser(response.data.user);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
+  const {getProfile} = useGetProfile();
+  const { profile } = React.useContext(GlobalContext)
 
   const getOrdersHistory = () => {
     axios
@@ -36,11 +24,10 @@ const Profile = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setOrders(response.data.orders);
       })
       .catch((err) => {
-        console.log(err.response);
+        alert(err.response.data.message)
       });
   };
 
@@ -82,18 +69,18 @@ const Profile = () => {
       <main>
         <S.UserData>
           <p>
-            {user.name}{' '}
+            {profile.name}{' '}
             <img onClick={goTo.EditProfile} src={Edit} alt={'Ícone de edit'} />
           </p>
-          <p>{user.email}</p>
-          <p>{user.cpf}</p>
+          <p>{profile.email}</p>
+          <p>{profile.cpf}</p>
         </S.UserData>
         <section>
           <p>
             Endereço cadastrado{' '}
             <img onClick={goTo.EditAddress} src={Edit} alt={'Ícone de edit'} />
           </p>
-          <p>{user.address}</p>
+          <p>{profile.address}</p>
         </section>
         <S.UserOrderHistory>
           <p>Histório de pedidos</p>
