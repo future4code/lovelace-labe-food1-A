@@ -1,5 +1,5 @@
 import axios from "axios"
-import { URL_BASE } from "../constants/urls"
+import URL_BASE from "../constants/urlBase"
 import { useCoordinator } from "../hooks/useCoordinator"
 
 const useUpdateProfile = (body) => {

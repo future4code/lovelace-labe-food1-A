@@ -3,10 +3,12 @@ import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import useGetDetails from '../../services/useGetDetails';
-import categories from '../../constants/categories';
-import ProductCard from './ProductCard';
+import { categoriesMeals } from '../../constants/categories';
+import ProductCard from '../../components/ProductCard';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const RestaurantDetails = () => {
+  const { setCart, cart } = React.useContext(GlobalContext);
   const { restaurantId } = useParams();
   const { getDetails, data } = useGetDetails();
 
@@ -22,15 +24,27 @@ const RestaurantDetails = () => {
 
   const returnFilteredProducts = () => {
     let filteredProducts = [];
-    for (const category of categories) {
+    for (const category of categoriesMeals) {
       filterMeal(category).length > 0 &&
         filteredProducts.push(filterMeal(category));
     }
     return filteredProducts;
   };
 
-  console.log(returnFilteredProducts());
+  const addItemToCart = (id, quantity, method) => {
+    const spreadCart = cart;
+    spreadCart.products.push({
+      id: id,
+      quantity: quantity,
+    });
+    spreadCart.paymentMethod = method
+    // console.log(spreadCart);
+    setCart(spreadCart);
+    console.log(cart);
 
+    // spreadCart.push({ id: id, quantity: quantity });
+    // console.log(cart);
+  };
   return (
     <S.DetailsContainer>
       <Header backButton title='Restaurante' />
@@ -63,6 +77,9 @@ const RestaurantDetails = () => {
                   name={product.name}
                   description={product.description}
                   price={product.price}
+                  onClick={() => {
+                    addItemToCart(product.id, 10, 'creditcard');
+                  }}
                 />
               ))}
             </div>

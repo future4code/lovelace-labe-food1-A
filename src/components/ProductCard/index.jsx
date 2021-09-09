@@ -1,14 +1,14 @@
 import React from 'react';
 import * as S from './styles';
 
-const ProductCard = ({photoUrl, name, description, price}) => {
+const ProductCard = ({photoUrl, name, description, price, onClick}) => {
   return (
-    <S.ProductCard>
+    <S.ProductCard onClick={onClick}>
       <S.Image img={photoUrl}/>
       <S.Infos>
         <S.Name>{name}</S.Name>
         <S.Price>{description}</S.Price>
-        <p>R${price}</p>
+        <p>R${price.toFixed(2).replace('.', ',')}</p>
       </S.Infos>
       <S.AddButton>adicionar</S.AddButton>
       <S.Quantity>2</S.Quantity>

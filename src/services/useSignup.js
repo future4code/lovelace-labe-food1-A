@@ -1,5 +1,5 @@
 import axios from "axios"
-import { URL_BASE } from "../constants/urls"
+import URL_BASE from "../constants/urlBase"
 import { useCoordinator } from "../hooks/useCoordinator"
 
 const useSignup = (body) => {
@@ -9,13 +9,12 @@ const useSignup = (body) => {
     setIsLoading(true)
     axios.post(`${URL_BASE}/signup`, body)
       .then((response) => {
-        console.log(response.data)
         localStorage.setItem("token", response.data.token)
         goTo.SignUpAdress()
         setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err.response.data)
+        alert(err.response.data.message)
         setIsLoading(false)
       })
   }

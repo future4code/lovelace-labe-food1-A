@@ -18,7 +18,7 @@ const useAddAddress = (body) => {
         setIsLoading(false)
       })
       .catch((err) => {
-        alert(err.response)
+        alert(err.response.data.message)
         setIsLoading(false)
       })
   }
