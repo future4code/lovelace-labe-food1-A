@@ -12,6 +12,7 @@ import { categoriesRestaurants } from '../../constants/categories';
 import useForm from '../../hooks/useForm';
 
 const Home = () => {
+
   const { restaurants } = React.useContext(GlobalContext);
   const [form, handleInputChange, clear] = useForm({ search: '' });
   const token = localStorage.getItem('token');
@@ -26,13 +27,13 @@ const Home = () => {
   const { getRestaurants, error } = useGetRestaurants();
   const goTo = useCoordinator();
 
-  useEffect(() => {
-    getRestaurants(token);
-  }, []);
-
   const filteredRestaurants = (category) => {
     return restaurants?.filter((restaurant) => restaurant.category === category);
   };
+
+  useEffect(() => {
+    getRestaurants(token);
+  }, []);
 
   return (
     <S.Home>
@@ -40,7 +41,7 @@ const Home = () => {
       <main>
         <S.SearchBar>
           <img src={search} alt='Pesquisar' />
-          <form autocomplete='off'>
+          <form autoComplete='off'>
             <S.InputSearch
               type='text'
               placeholder='Restaurante'
@@ -107,7 +108,7 @@ const Home = () => {
           </>
         )}
       </main>
-      <Footer />
+      <Footer page='home'/>
     </S.Home>
   );
 };

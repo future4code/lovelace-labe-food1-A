@@ -1,5 +1,5 @@
 import axios from "axios"
-import { URL_BASE } from "../constants/urls"
+import URL_BASE from "../constants/urlBase"
 import { useCoordinator } from "../hooks/useCoordinator"
 
 const useSignupAddress = (body) => {
@@ -15,11 +15,10 @@ const useSignupAddress = (body) => {
       .then((response) => {
         localStorage.setItem("token", response.data.token)
         goTo.Home()
-        console.log(response.data)
         setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err.response)
+        alert(err.response.data.message)
         setIsLoading(false)
       })
   }

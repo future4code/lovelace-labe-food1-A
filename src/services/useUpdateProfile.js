@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { URL_BASE } from "../constants/urls"
+import URL_BASE from "../constants/urlBase"
 import { useCoordinator } from "../hooks/useCoordinator"
 
 const useUpdateProfile = (body) => {
@@ -13,11 +13,10 @@ const useUpdateProfile = (body) => {
       }
     })
     .then((response) => {
-      console.log(response.data)
       goTo.Profile()
     })
     .catch((err) => {
-      console.log(err.response)
+      alert(err.response.data.message)
     })
   }
   return updateProfile

@@ -26,11 +26,10 @@ const EditAddressForm = () => {
       }
     })
     .then((response) => {
-      console.log(response.data.address)
       setForm(response.data.address)
     })
     .catch((err) => {
-      console.log(err.response)
+      alert(err.response.data.message)
     })
   }
 
