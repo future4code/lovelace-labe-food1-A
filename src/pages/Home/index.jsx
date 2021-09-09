@@ -107,7 +107,7 @@ const Home = () => {
           </>
         )}
       </main>
-      <Footer />
+      <Footer page='home'/>
     </S.Home>
   );
 };

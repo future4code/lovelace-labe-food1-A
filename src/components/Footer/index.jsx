@@ -2,20 +2,26 @@ import React from "react";
 import * as S from './styles'
 import IconButton from "@material-ui/core/IconButton";
 import { useCoordinator } from "../../hooks/useCoordinator";
+import avatar_orange from '../../assets/avatar_orange.svg'
+import avatar from '../../assets/avatar.svg'
+import homepage_orange from '../../assets/homepage_orange.svg'
+import homepage from '../../assets/homepage.svg'
+import shopping_cart_orange from '../../assets/shopping_cart_orange.svg'
+import shopping_cart from '../../assets/shopping_cart.svg'
 
-const Footer = () => {
+const Footer = (props) => {
   const goTo = useCoordinator();
   return (
     <S.Footer>
 
-      <IconButton title={'Retornar para Página Principal'} onClick={goTo.Home} aria-label="home">
-        <img src={"https://cdn.zeplin.io/5dd5ae92669af1bc817c8359/assets/665B3253-0B10-4DA6-ADB0-B764A98E9A47.svg"}/>
+      <IconButton title={'Página Principal'} onClick={goTo.Home} aria-label="home">
+        <img src={props.page === 'home' ? homepage_orange : homepage}/>
       </IconButton>
-      <IconButton title={'Ir para Carrinho'} onClick={goTo.Cart}  aria-label="cart">
-        <img src={'https://cdn.zeplin.io/5dd5ae92669af1bc817c8359/assets/6E69D164-038D-459A-B0D8-E2052E60CBB9.svg'}/>
+      <IconButton title={'Carrinho'} onClick={goTo.Cart}  aria-label="cart">
+        <img src={props.page === 'cart' ? shopping_cart_orange : shopping_cart}/>
       </IconButton>
-      <IconButton title={'Ir para Perfil'} onClick={goTo.Profile} aria-label="profile">
-        <img src={'https://cdn.zeplin.io/5dd5ae92669af1bc817c8359/assets/67E026C8-789C-4AEF-AD4F-08BCD42B0795.svg'}/>
+      <IconButton title={'Perfil'} onClick={goTo.Profile} aria-label="profile">
+        <img src={props.page === 'profile' ? avatar_orange : avatar}/>
       </IconButton>
     </S.Footer>
   );
