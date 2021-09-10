@@ -43,10 +43,15 @@ export const UserData = styled.section`
       margin-right: 0.5rem;
      }
      p:nth-child(2){
+      display: flex;
+      align-items: center;
+      color: black;
       margin-top: 0;
       margin-bottom: 0.5rem;
      }
      p:nth-child(3){
+      display: flex;
+      align-items: center;
       margin-top: 0;
      }
 `
