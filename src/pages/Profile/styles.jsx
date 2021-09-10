@@ -39,20 +39,25 @@ export const UserData = styled.section`
       justify-content: space-between;
       align-items: center;
       color: black;
-      margin-bottom: 0.5rem;
+      margin-bottom: -0.5rem;
       margin-right: 0.5rem;
      }
+/* 
+     img{
+       display: flex;
+       align-items: center;
+     } */
      p:nth-child(2){
       display: flex;
       align-items: center;
       color: black;
-      margin-top: 0;
+      margin-top: 0.5rem;
       margin-bottom: 0.5rem;
      }
      p:nth-child(3){
       display: flex;
       align-items: center;
-      margin-top: 0;
+      margin-top: -0.3rem;
      }
 `
 export const UserOrderHistory = styled.section`
