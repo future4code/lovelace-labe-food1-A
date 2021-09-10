@@ -3,8 +3,10 @@ import SignupForm from './SignupForm'
 import logo from '../../assets/logo.svg'
 import * as S from './styles'
 import Header from '../../components/Header'
+import useUnprotectedPage from '../../hooks/useUnProtectedPage'
 
 const Signup = () => {
+  useUnprotectedPage()
   return (
     <>
     <Header backButton/>

@@ -8,8 +8,10 @@ import Edit from '../../assets/edit.svg';
 import { useCoordinator } from '../../hooks/useCoordinator';
 import useGetProfile from '../../services/useGetProfile';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import useProtectedPage from '../../hooks/useProtectedPage'
 
 const Profile = () => {
+  useProtectedPage()
   const [orders, setOrders] = useState([]);
   const goTo = useCoordinator();
   const { getProfile } = useGetProfile();
