@@ -1,7 +1,21 @@
 import React from 'react';
 import * as S from './styles';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
-const ProductCard = ({ photoUrl, name, description, price, onClick }) => {
+const ProductCard = ({
+  id,
+  photoUrl,
+  name,
+  description,
+  price,
+  openModal,
+  removeItemFromCart,
+}) => {
+  const { cart } = React.useContext(GlobalContext);
+
+  const findId = cart?.products.filter((product) => product.id === id);
+  // console.log(findId);
+
   return (
     <S.ProductCard>
       <S.Image img={photoUrl} />
@@ -10,8 +24,19 @@ const ProductCard = ({ photoUrl, name, description, price, onClick }) => {
         <S.Price>{description}</S.Price>
         <p>R${price.toFixed(2).replace('.', ',')}</p>
       </S.Infos>
-      <S.AddButton onClick={onClick}>adicionar</S.AddButton>
-      <S.Quantity>2</S.Quantity>
+      {findId.length == 0 ? (
+        <S.AddButton onClick={openModal}>adicionar</S.AddButton>
+      ) : (
+        <S.RemoveButton
+          onClick={() => {
+            removeItemFromCart(id);
+            // console.log(cart);
+          }}
+        >
+          Remover
+        </S.RemoveButton>
+      )}
+      {findId.length > 0 && <S.Quantity>{findId[0].quantity}</S.Quantity>}
     </S.ProductCard>
   );
 };
