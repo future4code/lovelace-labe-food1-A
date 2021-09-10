@@ -13,7 +13,7 @@ const ShowModal = ({
   quantity,
   setQuantity,
   addItemToCart,
-  actualId,
+  product,
   restaurantId,
   data,
 }) => {
@@ -21,26 +21,33 @@ const ShowModal = ({
     setQuantity(event.target.value);
   };
 
-  const { actualRestaurant, setActualRestaurant } =
-    React.useContext(GlobalContext);
 
+  const {
+    actualRestaurant,
+    setActualRestaurant,
+    cartProducts,
+    setCartProducts,
+  } = React.useContext(GlobalContext);
+  console.log(cartProducts);
   const placeOrder = () => {
     if (actualRestaurant.id === '' || actualRestaurant.id === restaurantId) {
       if (quantity > 0) {
-        addItemToCart(actualId, quantity);
+        addItemToCart(product.id, quantity);
         handleClose();
         setActualRestaurant({
           id: restaurantId,
           deliveryTime: data.deliveryTime,
           shipping: data.shipping,
-          address: data.address
+          address: data.address,
         });
+        const spreadCartProducts = cartProducts
+        spreadCartProducts.push(product)
+        setCartProducts(spreadCartProducts)
       }
     } else {
       alert('Remova os itens de outro restaurante do carrinho');
     }
-    console.log(actualRestaurant)
-
+    console.log(actualRestaurant);
   };
 
   const body = (

@@ -11,7 +11,7 @@ import useProtectedPage from '../../hooks/useProtectedPage';
 import Footer from '../../components/Footer';
 
 const RestaurantDetails = () => {
-  useProtectedPage()
+  useProtectedPage();
   const { setCart, cart } = React.useContext(GlobalContext);
   const { restaurantId } = useParams();
   const { getDetails, data } = useGetDetails();
@@ -53,7 +53,7 @@ const RestaurantDetails = () => {
   };
 
   const [open, setOpen] = React.useState(false);
-  const [actualId, setActualId] = React.useState(false);
+  const [product, setProduct] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -77,7 +77,7 @@ const RestaurantDetails = () => {
               handleClose={handleClose}
               quantity={quantity}
               setQuantity={setQuantity}
-              actualId={actualId}
+              product={product}
               addItemToCart={addItemToCart}
               restaurantId={restaurantId}
               data={data}
@@ -111,7 +111,13 @@ const RestaurantDetails = () => {
                     price={product.price}
                     id={product.id}
                     openModal={() => {
-                      setActualId(product.id);
+                      setProduct({
+                        id: product.id,
+                        photoUrl: product.photoUrl,
+                        name: product.name,
+                        description: product.description,
+                        price: product.price,
+                      });
                       handleOpen();
                     }}
                     removeItemFromCart={removeItemFromCart}
