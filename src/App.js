@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core'
 import theme from './constants/theme'
 import * as S from './styles'
 
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
