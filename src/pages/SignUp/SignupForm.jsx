@@ -4,13 +4,6 @@ import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import * as S from "./styles"
 import useSignup from "../../services/useSignup"
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import FormControl from "@material-ui/core/FormControl";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from "@material-ui/core/CircularProgress"
 
 const SignupForm = () => {
@@ -37,20 +30,6 @@ const SignupForm = () => {
       signup(setIsLoading)
     }
   }
-
-  // const password = document.getElementById('password');
-  // const confirmPassword = document.getElementById('confirmPassword');
-  // function validarSenha() {
-  //   if (form.password === form.confirmPassword) {
-  //     // alert("Sucesso")
-  //     confirmPassword.setCustomValidity("");
-  //     return true;
-  //   } else {
-  //     confirmPassword.setCustomValidity("Senhas diferentes!");
-  //     confirmPassword.reportValidity();
-  //     return false;
-  //   }
-  // }
 
   return (
     <S.SignupFormContainer>
@@ -122,27 +101,6 @@ const SignupForm = () => {
           placeholder={"Mínimo 6 caracteres"}
           required
         />
-        {/* <FormControl variant="outlined" style={{ width: "100%", marginTop: 10 }}>
-          <InputLabel htmlFor="campoSenha" shrink>Senha</InputLabel>
-          <OutlinedInput
-            id="campoSenha"
-            type={showPassword ? 'text' : 'password'}
-            value={form.password}
-            onChange={onChange}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={e => setShowPassword(!showPassword)}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl> */}
         <TextField
           id={"confirmPassword"}
           name={"confirmPassword"}

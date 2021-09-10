@@ -6,8 +6,8 @@ import Splash from './Splash';
 
 ReactDOM.render(
     <GlobalContextProvider>
-      {/* <Splash /> */}
-      <App />
+      <Splash />
+      {/* <App /> */}
     </GlobalContextProvider>,
   document.getElementById('root')
 );
