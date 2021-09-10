@@ -6,7 +6,6 @@ export const DetailsContainer = styled.div`
   max-height: 100vh;
   width: 100%;
   height: 100vh;
-  
 `;
 
 export const RestaurantCover = styled.div`
@@ -44,8 +43,21 @@ export const Title = styled.p`
 export const DoubleInfos = styled.div`
   width: 100%;
   display: flex;
-  p:nth-child(1){
+  p:nth-child(1) {
     margin-right: 3rem;
   }
 `;
 
+export const Category = styled.h2`
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: -0.39px;
+  font-family: 'Roboto', sans-serif;
+`;
+
+export const Hr = styled.hr`
+  border-color: transparent; 
+  border-bottom-color: black; 
+`;

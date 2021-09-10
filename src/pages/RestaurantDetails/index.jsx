@@ -6,6 +6,7 @@ import useGetDetails from '../../services/useGetDetails';
 import { categoriesMeals } from '../../constants/categories';
 import ProductCard from '../../components/ProductCard';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import ShowModal from '../../components/Modal';
 
 const RestaurantDetails = () => {
   const { setCart, cart } = React.useContext(GlobalContext);
@@ -31,25 +32,50 @@ const RestaurantDetails = () => {
     return filteredProducts;
   };
 
-  const addItemToCart = (id, quantity, method) => {
+  const addItemToCart = (id, quantity) => {
     const spreadCart = cart;
     spreadCart.products.push({
       id: id,
       quantity: quantity,
     });
-    spreadCart.paymentMethod = method
-    // console.log(spreadCart);
     setCart(spreadCart);
-    console.log(cart);
-
-    // spreadCart.push({ id: id, quantity: quantity });
-    // console.log(cart);
   };
+
+  const removeItemFromCart = (id) => {
+    const spreadCart = cart;
+    const filteredSpreadCart = spreadCart.products?.filter(
+      (product) => product.id !== id
+    );
+    setCart({products: filteredSpreadCart});
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const [actualId, setActualId] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [quantity, setQuantity] = React.useState('');
+
   return (
     <S.DetailsContainer>
       <Header backButton title='Restaurante' />
       {data && (
         <S.MainContainer>
+          <ShowModal
+            open={open}
+            setOpen={setOpen}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            actualId={actualId}
+            addItemToCart={addItemToCart}
+          />
           <S.RestaurantCover>
             <img src={data.logoUrl} alt={data.dane} />
           </S.RestaurantCover>
@@ -68,8 +94,8 @@ const RestaurantDetails = () => {
 
           {returnFilteredProducts().map((array, index) => (
             <div key={index}>
-              <h2>{array[0].category}</h2>
-              <hr />
+              <S.Category>{array[0].category}</S.Category>
+              <S.Hr />
               {array.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -77,9 +103,12 @@ const RestaurantDetails = () => {
                   name={product.name}
                   description={product.description}
                   price={product.price}
-                  onClick={() => {
-                    addItemToCart(product.id, 10, 'creditcard');
+                  id={product.id}
+                  openModal={() => {
+                    setActualId(product.id);
+                    handleOpen();
                   }}
+                  removeItemFromCart={removeItemFromCart}
                 />
               ))}
             </div>

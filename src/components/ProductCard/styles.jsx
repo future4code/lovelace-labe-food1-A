@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ProductCard = styled.div`
   display: flex;
   height: 7rem;
-  border: solid 1px #b8b8b8;
+  border: solid 1px #e86e5a;
   border-radius: 0.5rem;
   width: 100%;
   position: relative;
@@ -34,28 +34,37 @@ export const Image = styled.div`
 
 export const AddButton = styled.button`
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -1px;
+  bottom: -1px;
   background-color: #fff;
   border: 1px solid #e02020;
-  color:#e02020;
+  color: #e02020;
   height: 2rem;
-  width: 5.6rem; 
+  width: 5.6rem;
+  border-radius: 0.5rem 0 0.5rem 0; ;
+`;
+export const RemoveButton = styled.button`
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  background-color: #e86e5a;
+  color: #fff;
+  border: 1px solid #e86e5a;
+  height: 2rem;
+  width: 5.6rem;
   border-radius: 0.5rem 0 0.5rem 0;
-;
 `;
 
 export const Quantity = styled.button`
   position: absolute;
-  right: 0;
-  top: 0;
-  background-color: #fff;
-  border: 1px solid #e02020;
-  color:#e02020;
+  right: -1px;
+  top: -1px;
+  background-color: #e86e5a;
+  border: 1px solid #e86e5a;
+  color: #fff;
   height: 2rem;
-  width: 2rem; 
-  border-radius: 0 0.5rem 0 0.5rem;
-;
+  width: 2rem;
+  border-radius: 0 0.5rem 0 0.5rem; ;
 `;
 
 export const Infos = styled.div`
@@ -64,4 +73,4 @@ export const Infos = styled.div`
   height: 100%;
   justify-content: center;
   width: 10rem;
-`
+`;

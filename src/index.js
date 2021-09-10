@@ -5,11 +5,9 @@ import { GlobalContextProvider } from './contexts/GlobalContext'
 import Splash from './Splash';
 
 ReactDOM.render(
-  <React.StrictMode>
     <GlobalContextProvider>
       <Splash />
       {/* <App /> */}
-    </GlobalContextProvider>
-  </React.StrictMode>,
+    </GlobalContextProvider>,
   document.getElementById('root')
 );
