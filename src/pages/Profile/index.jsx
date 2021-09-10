@@ -6,15 +6,14 @@ import axios from 'axios';
 import URL_BASE from '../../constants/urlBase';
 import Edit from '../../assets/edit.svg';
 import { useCoordinator } from '../../hooks/useCoordinator';
-import useGetProfile from '../../services/useGetProfile'
-import { GlobalContext } from '../../contexts/GlobalContext'
-
+import useGetProfile from '../../services/useGetProfile';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const Profile = () => {
   const [orders, setOrders] = useState([]);
   const goTo = useCoordinator();
-  const {getProfile} = useGetProfile();
-  const { profile } = React.useContext(GlobalContext)
+  const { getProfile } = useGetProfile();
+  const { profile } = React.useContext(GlobalContext);
 
   const getOrdersHistory = () => {
     axios
@@ -27,7 +26,7 @@ const Profile = () => {
         setOrders(response.data.orders);
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        alert(err.response.data.message);
       });
   };
 
@@ -42,15 +41,13 @@ const Profile = () => {
 
   const showOrders =
     orders.length > 0 ? (
-      orders.map((order) => {
-        return (
-          <S.OrderHistoryCard>
-            <p>{order.restaurantName}</p>
-            <p>{convertDate(order.createdAt)}</p>
-            <p>SUBTOTAL R${order.totalPrice},00</p>
-          </S.OrderHistoryCard>
-        );
-      })
+      orders.map((order) => (
+        <S.OrderHistoryCard key={order.id}>
+          <p>{order.restaurantName}</p>
+          <p>{convertDate(order.createdAt)}</p>
+          <p>SUBTOTAL R${order.totalPrice},00</p>
+        </S.OrderHistoryCard>
+      ))
     ) : (
       <p style={{ textAlign: 'center' }}>Você não realizou nenhum pedido</p>
     );
