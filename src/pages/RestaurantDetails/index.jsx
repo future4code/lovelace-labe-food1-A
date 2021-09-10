@@ -8,6 +8,7 @@ import ProductCard from '../../components/ProductCard';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import ShowModal from '../../components/Modal';
 import useProtectedPage from '../../hooks/useProtectedPage';
+import Footer from '../../components/Footer';
 
 const RestaurantDetails = () => {
   useProtectedPage()
@@ -48,7 +49,7 @@ const RestaurantDetails = () => {
     const filteredSpreadCart = spreadCart.products?.filter(
       (product) => product.id !== id
     );
-    setCart({products: filteredSpreadCart});
+    setCart({ products: filteredSpreadCart });
   };
 
   const [open, setOpen] = React.useState(false);
@@ -66,57 +67,62 @@ const RestaurantDetails = () => {
   return (
     <S.DetailsContainer>
       <Header backButton title='Restaurante' />
-      {data && (
-        <S.MainContainer>
-          <ShowModal
-            open={open}
-            setOpen={setOpen}
-            handleOpen={handleOpen}
-            handleClose={handleClose}
-            quantity={quantity}
-            setQuantity={setQuantity}
-            actualId={actualId}
-            addItemToCart={addItemToCart}
-          />
-          <S.RestaurantCover>
-            <img src={data.logoUrl} alt={data.dane} />
-          </S.RestaurantCover>
+      <S.MainContainer>
+        {data && (
+          <>
+            <ShowModal
+              open={open}
+              setOpen={setOpen}
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              actualId={actualId}
+              addItemToCart={addItemToCart}
+              restaurantId={restaurantId}
+              data={data}
+            />
+            <S.RestaurantCover>
+              <img src={data.logoUrl} alt={data.name} />
+            </S.RestaurantCover>
 
-          <S.Details>
-            <S.Title>{data.name}</S.Title>
-            <p>{data.category}</p>
-            <S.DoubleInfos>
-              <p>
-                {data.deliveryTime} - {data.deliveryTime + 10}min
-              </p>
-              <p>Frete R${data.shipping}, 00</p>
-            </S.DoubleInfos>
-            <p>{data.address}</p>
-          </S.Details>
+            <S.Details>
+              <S.Title>{data.name}</S.Title>
+              <p>{data.category}</p>
+              <S.DoubleInfos>
+                <p>
+                  {data.deliveryTime} - {data.deliveryTime + 10}min
+                </p>
+                <p>Frete R${data.shipping}, 00</p>
+              </S.DoubleInfos>
+              <p>{data.address}</p>
+            </S.Details>
 
-          {returnFilteredProducts().map((array, index) => (
-            <div key={index}>
-              <S.Category>{array[0].category}</S.Category>
-              <S.Hr />
-              {array.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  photoUrl={product.photoUrl}
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
-                  id={product.id}
-                  openModal={() => {
-                    setActualId(product.id);
-                    handleOpen();
-                  }}
-                  removeItemFromCart={removeItemFromCart}
-                />
-              ))}
-            </div>
-          ))}
-        </S.MainContainer>
-      )}
+            {returnFilteredProducts().map((array, index) => (
+              <div key={index}>
+                <S.Category>{array[0].category}</S.Category>
+                <S.Hr />
+                {array.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    photoUrl={product.photoUrl}
+                    name={product.name}
+                    description={product.description}
+                    price={product.price}
+                    id={product.id}
+                    openModal={() => {
+                      setActualId(product.id);
+                      handleOpen();
+                    }}
+                    removeItemFromCart={removeItemFromCart}
+                  />
+                ))}
+              </div>
+            ))}
+          </>
+        )}
+      </S.MainContainer>
+      <Footer />
     </S.DetailsContainer>
   );
 };

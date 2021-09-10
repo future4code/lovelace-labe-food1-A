@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const DetailsContainer = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr;
-  max-height: 100vh;
+  grid-template-rows: auto 1fr auto;
   width: 100%;
   height: 100vh;
 `;
@@ -23,10 +22,11 @@ export const RestaurantCover = styled.div`
 export const MainContainer = styled.main`
   width: 100%;
   max-width: 22rem;
-  height: 100%;
+  min-height: 100%;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
+  overflow: auto;
 `;
 
 export const Details = styled.div`

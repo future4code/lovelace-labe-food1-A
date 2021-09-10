@@ -11,10 +11,10 @@ const ProductCard = ({
   openModal,
   removeItemFromCart,
 }) => {
-  const { cart } = React.useContext(GlobalContext);
+  const { cart, setActualRestaurant, actualRestaurant } =
+    React.useContext(GlobalContext);
 
   const findId = cart?.products.filter((product) => product.id === id);
-  // console.log(findId);
 
   return (
     <S.ProductCard>
@@ -30,7 +30,14 @@ const ProductCard = ({
         <S.RemoveButton
           onClick={() => {
             removeItemFromCart(id);
-            // console.log(cart);
+            if (cart.products.length == 1) {
+              setActualRestaurant({
+                id: '',
+                address: '',
+                deliveryTime: '',
+                shipping: '',
+              });
+            }
           }}
         >
           Remover
