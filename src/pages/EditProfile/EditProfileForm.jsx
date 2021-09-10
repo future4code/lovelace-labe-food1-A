@@ -1,25 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import * as S from './styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import useUpdateProfile from '../../services/useUpdateProfile'
+import axios from 'axios'
+import URL_BASE from '../../constants/urlBase'
 
 const EditProfileForm = () => {
-  const [form, onChange] = useForm({name: "", email: "", cpf: ""})
+  const [form, onChange, clear, setForm] = useForm({ name: "", email: "", cpf: "" })
   const [isLoading, setIsLoading] = useState(false)
   const updateProfile = useUpdateProfile(form)
 
   const onSubmitEditProfileForm = (event) => {
     event.preventDefault()
-    updateProfile()
+    updateProfile(setIsLoading)
   }
+
+  const getProfile = () => {
+    axios.get(`${URL_BASE}/profile`, {
+      headers: {
+        auth: localStorage.getItem("token")
+      }
+    })
+      .then((response) => {
+        setForm({ name: response.data.user.name, email: response.data.user.email, cpf: response.data.user.cpf})
+      })
+      .catch((err) => {
+        alert(err.response.data.message)
+      })
+    }
+    
+  console.log(form)
+  useEffect(() => {
+    getProfile()
+  }, [])
 
   return (
     <S.EditProfileForm>
       <form onSubmit={onSubmitEditProfileForm}>
-      <TextField
+        <TextField
           name={"name"}
           value={form.name}
           onChange={onChange}
@@ -53,7 +74,7 @@ const EditProfileForm = () => {
           name={"cpf"}
           value={form.cpf}
           onChange={onChange}
-          type={"number"}
+          type={"text"}
           label={"CPF"}
           variant={"outlined"}
           required
@@ -61,7 +82,6 @@ const EditProfileForm = () => {
           margin={"normal"}
           placeholder={"000.000.000-00"}
           inputProps={{ pattern: "[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" }}
-          // inputProps={{ pattern: "/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/" }}
           InputLabelProps={{
             shrink: true,
           }}
@@ -72,9 +92,9 @@ const EditProfileForm = () => {
           color="primary"
           fullWidth
         >
-          {isLoading? <CircularProgress color={"inherit"} size={24}/> : <>Salvar</>}
+          {isLoading ? <CircularProgress color={"inherit"} size={24} /> : <>Salvar</>}
         </Button>
-        </form>
+      </form>
     </S.EditProfileForm>
   )
 }

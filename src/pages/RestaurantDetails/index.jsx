@@ -6,6 +6,7 @@ import useGetDetails from '../../services/useGetDetails';
 import { categoriesMeals } from '../../constants/categories';
 import ProductCard from '../../components/ProductCard';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import ShowModal from '../../components/Modal';
 
 const RestaurantDetails = () => {
   const { setCart, cart } = React.useContext(GlobalContext);
@@ -31,6 +32,8 @@ const RestaurantDetails = () => {
     return filteredProducts;
   };
 
+  
+
   const addItemToCart = (id, quantity, method) => {
     const spreadCart = cart;
     spreadCart.products.push({
@@ -50,6 +53,7 @@ const RestaurantDetails = () => {
       <Header backButton title='Restaurante' />
       {data && (
         <S.MainContainer>
+          <ShowModal />
           <S.RestaurantCover>
             <img src={data.logoUrl} alt={data.dane} />
           </S.RestaurantCover>
@@ -79,6 +83,7 @@ const RestaurantDetails = () => {
                   price={product.price}
                   onClick={() => {
                     addItemToCart(product.id, 10, 'creditcard');
+                    
                   }}
                 />
               ))}
