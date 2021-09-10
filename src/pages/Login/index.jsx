@@ -4,8 +4,10 @@ import logo from '../../assets/logo.svg'
 import * as S from './styles'
 import Button from '@material-ui/core/Button'
 import { useCoordinator } from '../../hooks/useCoordinator'
+import useUnprotectedPage from '../../hooks/useUnProtectedPage'
 
 const Login = () => {
+  useUnprotectedPage()
   const goTo = useCoordinator()
 
   return (

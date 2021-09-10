@@ -7,8 +7,10 @@ import { categoriesMeals } from '../../constants/categories';
 import ProductCard from '../../components/ProductCard';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import ShowModal from '../../components/Modal';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 const RestaurantDetails = () => {
+  useProtectedPage()
   const { setCart, cart } = React.useContext(GlobalContext);
   const { restaurantId } = useParams();
   const { getDetails, data } = useGetDetails();

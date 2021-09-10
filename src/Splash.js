@@ -25,7 +25,7 @@ const Splash = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 100000);
+    }, 3000);
   }, []);
 
   return isLoading ? (

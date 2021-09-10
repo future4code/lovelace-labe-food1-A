@@ -10,8 +10,10 @@ import useGetRestaurants from '../../services/useGetRestaurants';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { categoriesRestaurants } from '../../constants/categories';
 import useForm from '../../hooks/useForm';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 const Home = () => {
+  useProtectedPage()
 
   const { restaurants } = React.useContext(GlobalContext);
   const [form, handleInputChange, clear] = useForm({ search: '' });
