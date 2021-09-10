@@ -5,6 +5,12 @@ export const GlobalContext = React.createContext({});
 export function GlobalContextProvider({ children }) {
   const [restaurants, setRestaurants] = React.useState([]);
   const [profile, setProfile] = React.useState({});
+  const [actualRestaurant, setActualRestaurant] = React.useState({
+    id: '',
+    address: '',
+    deliveryTime: '',
+    shipping: '',
+  });
   const [cart, setCart] = React.useState({
     products: [],
     paymentMethod: '',
@@ -19,6 +25,8 @@ export function GlobalContextProvider({ children }) {
         setProfile,
         cart,
         setCart,
+        actualRestaurant,
+        setActualRestaurant,
       }}
     >
       {children}
