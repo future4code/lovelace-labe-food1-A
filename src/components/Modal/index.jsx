@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import * as S from './styles';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const ShowModal = ({
   open,
@@ -13,9 +14,33 @@ const ShowModal = ({
   setQuantity,
   addItemToCart,
   actualId,
+  restaurantId,
+  data,
 }) => {
   const handleChange = (event) => {
     setQuantity(event.target.value);
+  };
+
+  const { actualRestaurant, setActualRestaurant } =
+    React.useContext(GlobalContext);
+
+  const placeOrder = () => {
+    if (actualRestaurant.id === '' || actualRestaurant.id === restaurantId) {
+      if (quantity > 0) {
+        addItemToCart(actualId, quantity);
+        handleClose();
+        setActualRestaurant({
+          id: restaurantId,
+          deliveryTime: data.deliveryTime,
+          shipping: data.shipping,
+          address: data.address
+        });
+      }
+    } else {
+      alert('Remova os itens de outro restaurante do carrinho');
+    }
+    console.log(actualRestaurant)
+
   };
 
   const body = (
@@ -24,8 +49,6 @@ const ShowModal = ({
       <FormControl fullWidth variant='outlined' color={'secondary'}>
         <InputLabel>Quantidade desejada</InputLabel>
         <Select
-          // labelId='demo-simple-select-outlined-label'
-          // id='demo-simple-select-outlined'
           value={quantity}
           onChange={handleChange}
           label='Quantidade desejada'
@@ -37,13 +60,7 @@ const ShowModal = ({
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
-      <Button
-        color={'primary'}
-        onClick={() => {
-          addItemToCart(actualId, quantity);
-          handleClose();
-        }}
-      >
+      <Button color={'primary'} onClick={placeOrder}>
         Adicionar ao carrinho
       </Button>
     </S.BodyModal>
