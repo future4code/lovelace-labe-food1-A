@@ -78,68 +78,82 @@ const Cart = () => {
             </div>
           </S.RestaurantInfos>
         ) : (
-          <p>Carrinho vazio</p>
+          <S.EmptyCart>
+            <p>Carrinho vazio</p>
+          </S.EmptyCart>
         )}
 
-        {cartProducts.length > 0 &&
-          cartProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              photoUrl={product.photoUrl}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              removeItemFromCart={removeItemFromCart}
-            />
-          ))}
+        <S.CardsContainer>
+          <S.InsideContainer>
+            {cartProducts.length > 0 &&
+              cartProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  photoUrl={product.photoUrl}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  removeItemFromCart={removeItemFromCart}
+                />
+              ))}
+          </S.InsideContainer>
+        </S.CardsContainer>
 
-        {actualRestaurant.id ? (
-          <p>Frete R${actualRestaurant.shipping}, 00</p>
-        ) : (
-          <p>Frete R$00,00</p>
-        )}
+        <S.PaymentContainer>
+          <S.Shipping>
+            {actualRestaurant.id ? (
+              <span>Frete R${actualRestaurant.shipping}, 00</span>
+            ) : (
+              <span>Frete R$00,00</span>
+            )}
+          </S.Shipping>
 
-        <div>
-          <p>SUBTOTAL</p>
-          <p>R$ 60</p>
-        </div>
+          <S.Subtotal>
+            <span>SUBTOTAL</span>
+            <span>R$60,00</span>
+          </S.Subtotal>
 
-        <div>
-          <p>Forma de pagamento</p>
-          <hr />
-          <form>
-            <div>
-              <input
-                type='radio'
-                id='dinheiro'
-                name='paymentmethod'
-                onChange={() => setCart({ ...cart, paymentMethod: 'money' })}
-              />
-              <label htmlFor='dinheiro'>Dinheiro</label>
-            </div>
-            <div>
-              <input
-                type='radio'
-                id='cartao'
-                name='paymentmethod'
-                onChange={() =>
-                  setCart({ ...cart, paymentMethod: 'creditcard' })
-                }
-              />
-              <label htmlFor='cartao'>Cartão de crédito</label>
-            </div>
-          </form>
-        </div>
-        <Button
-          onClick={() => getInfosAndPlaceOrder()}
-          type={'submit'}
-          variant='contained'
-          color='primary'
-          fullWidth
-        >
-          Confirmar
-        </Button>
+          <S.PaymentMethod>
+            <S.InsideContainer>
+              <span>Forma de pagamento</span>
+              <form onSubmit={(ev) => ev.preventDefault()}>
+                <S.Hr />
+                <S.PaymentOption>
+                  <input
+                    type='radio'
+                    id='dinheiro'
+                    name='paymentmethod'
+                    onChange={() =>
+                      setCart({ ...cart, paymentMethod: 'money' })
+                    }
+                  />
+                  <label htmlFor='dinheiro'>Dinheiro</label>
+                </S.PaymentOption>
+                <S.PaymentOption>
+                  <input
+                    type='radio'
+                    id='cartao'
+                    name='paymentmethod'
+                    onChange={() =>
+                      setCart({ ...cart, paymentMethod: 'creditcard' })
+                    }
+                  />
+                  <label htmlFor='cartao'>Cartão de crédito</label>
+                </S.PaymentOption>
+                <Button
+                  onClick={() => getInfosAndPlaceOrder()}
+                  type={'button'}
+                  variant='contained'
+                  color='primary'
+                  fullWidth
+                >
+                  Confirmar
+                </Button>
+              </form>
+            </S.InsideContainer>
+          </S.PaymentMethod>
+        </S.PaymentContainer>
       </S.MainContainer>
       <Footer page='cart' />
     </S.Cart>
