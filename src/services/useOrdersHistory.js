@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import URL_BASE from '../constants/urlBase'
 
 const useOrdersHistory = () => {
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = React.useState([])
 
   const getOrdersHistory = () => {
     axios.get(`${URL_BASE}/orders/history`, {

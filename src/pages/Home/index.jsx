@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import OrderInProgressCard from '../../components/OrderInProgressCard';
@@ -20,7 +20,7 @@ const Home = () => {
   const token = localStorage.getItem('token');
 
   const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
-    useState('Todos');
+    React.useState('Todos');
 
   const RestaurantsSearch = restaurants?.filter((restaurant) =>
     restaurant.name.startsWith(form.search)
@@ -33,7 +33,7 @@ const Home = () => {
     return restaurants?.filter((restaurant) => restaurant.category === category);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getRestaurants(token);
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import useForm from '../../hooks/useForm'
@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 const AddressForm = () => {
   const [form, onChange] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
   const signupAddress = useSignupAddress(form)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const onSubmitEditAddress= (event) => {
     event.preventDefault()
