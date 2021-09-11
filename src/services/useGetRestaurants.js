@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import URL_BASE from '../constants/urlBase'
 import { GlobalContext } from '../contexts/GlobalContext'
@@ -7,7 +7,7 @@ import { GlobalContext } from '../contexts/GlobalContext'
 const useGetRestaurants = () => {
 
   const { setRestaurants } = React.useContext(GlobalContext)
-  const [error, setError] = useState('')
+  const [error, setError] = React.useState('')
 
   let response
   const getRestaurants = async (token) => {

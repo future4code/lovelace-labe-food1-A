@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import * as S from './styles';
 import useGetProfile from '../../services/useGetProfile';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import useProtectedPage from '../../hooks/useProtectedPage';
 import ProductCard from '../../components/ProductCard';
 import Button from '@material-ui/core/Button';
 import usePlaceOrder from '../../services/usePlaceOrder';
@@ -40,7 +39,7 @@ const Cart = () => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getProfile();
   }, []);
 
