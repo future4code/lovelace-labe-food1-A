@@ -11,6 +11,7 @@ export function GlobalContextProvider({ children }) {
     address: '',
     deliveryTime: '',
     shipping: '',
+    name: '',
   });
   const [cart, setCart] = React.useState({
     products: [],

@@ -43,8 +43,8 @@ const Profile = () => {
 
   const showOrders =
     orders.length > 0 ? (
-      orders.map((order) => (
-        <S.OrderHistoryCard key={order.id}>
+      orders.map((order, index) => (
+        <S.OrderHistoryCard key={index}>
           <p>{order.restaurantName}</p>
           <p>{convertDate(order.createdAt)}</p>
           <p>SUBTOTAL R${order.totalPrice},00</p>

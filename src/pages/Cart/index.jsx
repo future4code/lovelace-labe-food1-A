@@ -7,6 +7,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import ProductCard from '../../components/ProductCard';
 import Button from '@material-ui/core/Button';
+import usePlaceOrder from '../../services/usePlaceOrder';
 
 const Cart = () => {
   const {
@@ -18,18 +19,27 @@ const Cart = () => {
     setCartProducts,
   } = React.useContext(GlobalContext);
 
-  const [payMethod, setPayMethod] = React.useState('money');
-
-  const handleMoney = () => {
-    setPayMethod('money');
-    console.log(payMethod);
-  };
-  const handleCard = () => {
-    setPayMethod('creditcard');
-    console.log(payMethod);
-  };
-
+  const { placeOrder } = usePlaceOrder();
   const { getProfile } = useGetProfile();
+
+  const getInfosAndPlaceOrder = () => {
+    if (
+      cart.paymentMethod !== '' &&
+      cart.products.length > 0 &&
+      actualRestaurant.id !== ''
+    ) {
+      placeOrder(actualRestaurant.id, cart);
+    } else if (cart.paymentMethod === '' && cart.products.length > 0) {
+      alert('Selecione um método de pagamento.');
+    } else if (cart.products.length == 0 && cart.paymentMethod !== '') {
+      alert('Adicione um item ao carrinho.');
+    } else {
+      alert(
+        'Adicione items ao carrinho e selecione um método de pagamento para confirmar sua compra.'
+      );
+    }
+  };
+
   useEffect(() => {
     getProfile();
   }, []);
@@ -39,7 +49,7 @@ const Cart = () => {
     const filteredSpreadCart = spreadCart.products?.filter(
       (product) => product.id !== id
     );
-    setCart({ products: filteredSpreadCart });
+    setCart({ ...cart, products: filteredSpreadCart });
 
     const spreadCartProducts = cartProducts;
     const filteredSpreadCartProducts = spreadCartProducts.filter(
@@ -52,19 +62,21 @@ const Cart = () => {
     <S.Cart>
       <Header backButton title='Meu carrinho' />
       <S.MainContainer>
-        <div>
-          <p>Endereço de entrega</p>
-          <p>{profile.address}</p>
-        </div>
+        <S.UserAdress>
+          <div>
+            <p>Endereço de entrega</p>
+            <p>{profile.address}</p>
+          </div>
+        </S.UserAdress>
 
         {actualRestaurant.id ? (
-          <div>
-            <p>{actualRestaurant.address}</p>
-            <p>
-              {actualRestaurant.deliveryTime} -{' '}
-              {actualRestaurant.deliveryTime + 10}min
-            </p>
-          </div>
+          <S.RestaurantInfos>
+            <div>
+              <p>{actualRestaurant.name}</p>
+              <p>{actualRestaurant.address}</p>
+              <p>{actualRestaurant.deliveryTime}min</p>
+            </div>
+          </S.RestaurantInfos>
         ) : (
           <p>Carrinho vazio</p>
         )}
@@ -81,7 +93,12 @@ const Cart = () => {
               removeItemFromCart={removeItemFromCart}
             />
           ))}
-        {actualRestaurant.id && <p>R${actualRestaurant.shipping},00</p>}
+
+        {actualRestaurant.id ? (
+          <p>Frete R${actualRestaurant.shipping}, 00</p>
+        ) : (
+          <p>Frete R$00,00</p>
+        )}
 
         <div>
           <p>SUBTOTAL</p>
@@ -91,13 +108,13 @@ const Cart = () => {
         <div>
           <p>Forma de pagamento</p>
           <hr />
-          <form action=''>
+          <form>
             <div>
               <input
                 type='radio'
                 id='dinheiro'
                 name='paymentmethod'
-                onChange={handleMoney}
+                onChange={() => setCart({ ...cart, paymentMethod: 'money' })}
               />
               <label htmlFor='dinheiro'>Dinheiro</label>
             </div>
@@ -106,13 +123,21 @@ const Cart = () => {
                 type='radio'
                 id='cartao'
                 name='paymentmethod'
-                onChange={handleCard}
+                onChange={() =>
+                  setCart({ ...cart, paymentMethod: 'creditcard' })
+                }
               />
               <label htmlFor='cartao'>Cartão de crédito</label>
             </div>
           </form>
         </div>
-        <Button type={'submit'} variant='contained' color='primary' fullWidth>
+        <Button
+          onClick={() => getInfosAndPlaceOrder()}
+          type={'submit'}
+          variant='contained'
+          color='primary'
+          fullWidth
+        >
           Confirmar
         </Button>
       </S.MainContainer>

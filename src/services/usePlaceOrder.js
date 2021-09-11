@@ -1,20 +1,21 @@
 import React from 'react'
 import axios from 'axios'
+import URL_BASE from '../constants/urlBase'
 
 const usePlaceOrder = () => {
 
-  const [data, setData] = useState('')
+  const [data, setData] = React.useState('')
 
-  const placeOrder = (id, body) => {
+  const placeOrder = (restaurantId, body) => {
     axios
-      .post(`${URL_BASE}/restaurants/${id}/order`, 
-      body, 
-      {
-        headers: {
-          auth: localStorage.getItem('token'),
-          ContentType: 'application/json',
-        },
-      })
+      .post(`${URL_BASE}/restaurants/${restaurantId}/order`,
+        body,
+        {
+          headers: {
+            auth: localStorage.getItem('token'),
+            ContentType: 'application/json',
+          },
+        })
       .then((response) => {
         console.log(response.data);
         // setData(response.data);

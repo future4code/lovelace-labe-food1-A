@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { GlobalContextProvider } from './contexts/GlobalContext'
-import Splash from './Splash';
+import Splash from './components/Splash/index';
 
 ReactDOM.render(
     <GlobalContextProvider>
       <Splash />
-      {/* <App /> */}
     </GlobalContextProvider>,
   document.getElementById('root')
 );

@@ -41,6 +41,7 @@ const Home = () => {
     <S.Home>
       <Header backButton title={'Rappi4'} />
       <main>
+        <OrderInProgressCard/>
         <S.SearchBar>
           <img src={search} alt='Pesquisar' />
           <form autoComplete='off'>

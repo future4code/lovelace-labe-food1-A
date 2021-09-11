@@ -12,40 +12,40 @@ import SignupAddress from "../pages/SignupAddress";
 
 
 const Router = () => {
-    return (
-            <Switch>
-                <Route exact path="/login" >
-                    <Login />
-                </Route>
-                <Route exact path="/signup" >
-                    <Signup />
-                </Route>
-                <Route exact path="/signup-address" >
-                    <SignupAddress />
-                </Route>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route exact path="/restaurants/:restaurantId" >
-                    <RestaurantDetails />
-                </Route>
-                <Route exact path="/cart">
-                    <Cart />
-                </Route>
-                <Route exact path="/profile">
-                    <Profile />
-                </Route>
-                <Route exact path="/profile/edit-profile">
-                    <EditProfile />
-                </Route>
-                <Route exact path="/profile/edit-address">
-                    <EditAddress />
-                </Route>
-                <Route>
-                    <div>Erro - Página não encontrada</div>
-                </Route>
-            </Switch>
-    );
+  return (
+    <Switch>
+      <Route exact path="/login" >
+        <Login />
+      </Route>
+      <Route exact path="/signup" >
+        <Signup />
+      </Route>
+      <Route exact path="/signup-address" >
+        <SignupAddress />
+      </Route>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route exact path="/restaurants/:restaurantId" >
+        <RestaurantDetails />
+      </Route>
+      <Route exact path="/cart">
+        <Cart />
+      </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/profile/edit-profile">
+        <EditProfile />
+      </Route>
+      <Route exact path="/profile/edit-address">
+        <EditAddress />
+      </Route>
+      <Route>
+        <div>Erro - Página não encontrada</div>
+      </Route>
+    </Switch>
+  );
 };
 
 export default Router;
