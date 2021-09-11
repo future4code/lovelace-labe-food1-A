@@ -21,7 +21,6 @@ const ShowModal = ({
     setQuantity(event.target.value);
   };
 
-
   const {
     actualRestaurant,
     setActualRestaurant,
@@ -39,10 +38,12 @@ const ShowModal = ({
           deliveryTime: data.deliveryTime,
           shipping: data.shipping,
           address: data.address,
+          name: data.name,
         });
-        const spreadCartProducts = cartProducts
-        spreadCartProducts.push(product)
-        setCartProducts(spreadCartProducts)
+        const spreadCartProducts = cartProducts;
+        spreadCartProducts.push(product);
+        setCartProducts(spreadCartProducts);
+        setQuantity('');
       }
     } else {
       alert('Remova os itens de outro restaurante do carrinho');
@@ -60,6 +61,7 @@ const ShowModal = ({
           onChange={handleChange}
           label='Quantidade desejada'
         >
+          <MenuItem value='' disabled style={{ display: 'none' }}></MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
           <MenuItem value={3}>3</MenuItem>
@@ -75,12 +77,7 @@ const ShowModal = ({
 
   return (
     <div>
-      <S.SModal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
-      >
+      <S.SModal open={open} onClose={handleClose}>
         {body}
       </S.SModal>
     </div>

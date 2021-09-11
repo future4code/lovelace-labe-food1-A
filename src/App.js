@@ -3,15 +3,14 @@ import Router from './routes/Router'
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core'
 import theme from './constants/theme'
-import * as S from './styles'
+import GlobalStyle from './global/globalStyles';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <S.GlobalStyles>
-          <Router />
-        </S.GlobalStyles>
+        <Router />
+        <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
   );
