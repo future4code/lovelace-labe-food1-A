@@ -1,4 +1,4 @@
-# Projeto em grupo para fechamento do módulo de Frontend do curso de Desenvolvimento Full-stack da Labenu - turma Lovelace.
+### Projeto em grupo para fechamento do módulo de Frontend do curso de Desenvolvimento Full-stack da Labenu - turma Lovelace.
 
 LAYOUT: Rappi
 
