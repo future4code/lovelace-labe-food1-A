@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React from 'react'
 
 const useForm = (initialState) => {
-  const [form, setForm] = useState(initialState)
+  const [form, setForm] = React.useState(initialState)
 
   const handleInputChange = (event) => {
     const {value, name} = event.target

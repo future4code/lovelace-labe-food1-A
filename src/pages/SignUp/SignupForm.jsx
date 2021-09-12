@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import useForm from "../../hooks/useForm"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
@@ -16,7 +16,7 @@ const SignupForm = () => {
     confirmPassword: "",
   })
   const signup = useSignup(form)
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const modulatedCPF = () => {
     return form.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")

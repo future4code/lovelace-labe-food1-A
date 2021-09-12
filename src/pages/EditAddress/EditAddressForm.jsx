@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import useForm from '../../hooks/useForm'
@@ -12,7 +12,7 @@ import URL_BASE from '../../constants/urlBase'
 const EditAddressForm = () => {
   const [form, onChange, clear, setForm] = useForm({ street: "", number: "", apartment: "", neighbourhood: "", city: "", state: "" })
   const addAddress = useAddAddress(form)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const onSubmitAddressForm = (event) => {
     event.preventDefault()
@@ -36,7 +36,7 @@ const EditAddressForm = () => {
       })
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     getFullAddress()
   }, [])
 

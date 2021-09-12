@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import URL_BASE from '../constants/urlBase'
 
 const useGetDetails = () => {
 
-  const [data, setData] = useState('')
-  const [error, setError] = useState('')
+  const [data, setData] = React.useState('')
+  const [error, setError] = React.useState('')
 
   let response
   const getDetails = async (token, id) => {

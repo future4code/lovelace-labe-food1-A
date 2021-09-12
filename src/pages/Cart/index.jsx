@@ -1,3 +1,4 @@
+
 import Button from '@material-ui/core/Button'
 import React, { useEffect } from 'react'
 import Footer from '../../components/Footer'
@@ -10,6 +11,7 @@ import useGetProfile from '../../services/useGetProfile'
 import usePlaceOrder from '../../services/usePlaceOrder'
 import cartIcon from '../../assets/shopping_cart_orange.svg'
 import * as S from './styles'
+
 
 
 const Cart = () => {
@@ -66,6 +68,7 @@ const Cart = () => {
     }
   }
 
+
   useEffect(() => {
     getProfile()
     calculateTotalPrice()
@@ -82,6 +85,7 @@ const Cart = () => {
     }
     setTotalPrice(totalPrice)
   }
+
 
   const removeItemFromCart = (id) => {
     const spreadCart = cart

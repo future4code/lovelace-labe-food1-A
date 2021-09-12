@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -11,7 +11,7 @@ import URL_BASE from '../../constants/urlBase'
 
 const EditProfileForm = () => {
   const [form, onChange, clear, setForm] = useForm({ name: "", email: "", cpf: "" })
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
   const updateProfile = useUpdateProfile(form)
 
   const onSubmitEditProfileForm = (event) => {
@@ -35,6 +35,7 @@ const EditProfileForm = () => {
         })
       })
     }
+
 
   useEffect(() => {
     getProfile()

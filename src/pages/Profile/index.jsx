@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import * as S from './styles';
@@ -13,7 +13,7 @@ import { Toast } from '../../components/Toast'
 
 const Profile = () => {
   useProtectedPage()
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = React.useState([]);
   const goTo = useCoordinator();
   const { getProfile } = useGetProfile();
   const { profile } = React.useContext(GlobalContext);
@@ -58,11 +58,11 @@ const Profile = () => {
       <p style={{ textAlign: 'center' }}>Você não realizou nenhum pedido</p>
     );
 
-  useEffect(() => {
+  React.useEffect(() => {
     getProfile();
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     getOrdersHistory()
   }, [])
 

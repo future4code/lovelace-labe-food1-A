@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React from 'react'
 import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 const LoginForm = () => {
   const [form, onChange] = useForm({ email: "", password: "" })
   const login = useLogin(form)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const onSubmitLoginForm = (event) => {
     event.preventDefault()

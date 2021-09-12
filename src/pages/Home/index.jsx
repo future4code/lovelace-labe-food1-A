@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
@@ -13,6 +14,7 @@ import useForm from '../../hooks/useForm'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import { useOrderInProgress } from '../../services/useOrderInProgress'
 
+
 const Home = () => {
   useProtectedPage()
   const { orderInProgress, getOrderInProgress } = useOrderInProgress()
@@ -22,7 +24,8 @@ const Home = () => {
   const token = localStorage.getItem('token')
 
   const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
-    useState('Todos')
+
+  React.useState('Todos');
 
   const RestaurantsSearch = restaurants?.filter((restaurant) =>
     restaurant.name.startsWith(form.search)
@@ -35,10 +38,12 @@ const Home = () => {
     return restaurants?.filter((restaurant) => restaurant.category === category)
   }
 
+
   useEffect(() => {
     getRestaurants(token)
     getOrderInProgress()
   }, [])
+
 
   return (
     <S.Home>
