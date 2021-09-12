@@ -1,4 +1,4 @@
-### Projeto em grupo para fechamento do módulo de Frontend do curso de Desenvolvimento Full-stack da Labenu - turma Lovelace.
+#### Projeto em grupo para fechamento do módulo de Frontend do curso de Desenvolvimento Full-stack da Labenu - turma Lovelace.
 
 LAYOUT: Rappi
 
@@ -11,7 +11,7 @@ Nome dos integrantes:
 - João Pedro Correia Barros
 - Vinicius Silva de Oliveira
 
-Link do Surge: goofy-snakes.surge.sh
+#### Link do Surge: goofy-snakes.surge.sh
 
 Prints:
 
