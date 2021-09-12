@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import * as S from './styles';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { Toast } from '../../components/Toast'
 
 const ShowModal = ({
   open,
@@ -27,7 +28,6 @@ const ShowModal = ({
     cartProducts,
     setCartProducts,
   } = React.useContext(GlobalContext);
-  console.log(cartProducts);
   const placeOrder = () => {
     if (actualRestaurant.id === '' || actualRestaurant.id === restaurantId) {
       if (quantity > 0) {
@@ -46,9 +46,11 @@ const ShowModal = ({
         setQuantity('');
       }
     } else {
-      alert('Remova os itens de outro restaurante do carrinho');
+      Toast.fire({
+        icon: 'error',
+        title: 'Remova os itens de outro restaurante do carrinho',
+      })
     }
-    console.log(actualRestaurant);
   };
 
   const body = (

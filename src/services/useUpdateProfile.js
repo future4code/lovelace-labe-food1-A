@@ -1,6 +1,7 @@
 import axios from "axios"
 import URL_BASE from "../constants/urlBase"
 import { useCoordinator } from "../hooks/useCoordinator"
+import { Toast } from '../components/Toast'
 
 const useUpdateProfile = (body) => {
   const goTo = useCoordinator()
@@ -17,7 +18,10 @@ const useUpdateProfile = (body) => {
         setIsLoading(false)
       })
       .catch((err) => {
-        alert(err.response)
+        Toast.fire({
+          icon: 'error',
+          title: err.response,
+        })
         setIsLoading(false)
       })
   }

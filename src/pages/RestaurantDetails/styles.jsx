@@ -12,10 +12,16 @@ export const RestaurantCover = styled.div`
   border-radius: 0.5rem 0.5rem 0 0;
   border: solid 1px #b8b8b8;
   margin: 1rem 0 0.5rem;
+  background-image: url(${props => props.imgUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    backdrop-filter: blur(2px);
   }
 `;
 
@@ -49,15 +55,16 @@ export const DoubleInfos = styled.div`
 `;
 
 export const Category = styled.h2`
-  font-size: 16px;
-  margin-bottom: 0.5rem;
+  font-size: 18px;
+  margin-top: 2.25rem;
+  margin-bottom: 0.25rem;
   font-weight: 500;
   color: #000;
-  letter-spacing: -0.39px;
   font-family: 'Roboto', sans-serif;
 `;
 
 export const Hr = styled.hr`
-  border-color: transparent; 
-  border-bottom-color: black; 
+  border-color: transparent;
+  border-bottom-color: black;
+  margin-bottom: 1rem;
 `;

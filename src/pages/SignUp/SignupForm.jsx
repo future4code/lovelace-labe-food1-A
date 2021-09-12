@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button"
 import * as S from "./styles"
 import useSignup from "../../services/useSignup"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import { Toast } from '../../components/Toast'
 
 const SignupForm = () => {
   const [form, onChange] = useForm({
@@ -24,7 +25,10 @@ const SignupForm = () => {
   const onSubmitSignupForm = (event) => {
     event.preventDefault()
     if (form.password !== form.confirmPassword) {
-      alert("As senhas estão diferentes")
+      Toast.fire({
+        icon: 'error',
+        title: 'As senhas estão diferentes',
+      })
     } else {
       form.cpf = modulatedCPF()
       signup(setIsLoading)

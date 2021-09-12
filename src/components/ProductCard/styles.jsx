@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const ProductCard = styled.div`
   display: flex;
   height: 7rem;
-  border: solid 1px #e86e5a;
+  margin: 1.25rem 0;
+  border: solid 1px #f3c9c2;
   border-radius: 0.5rem;
   width: 100%;
   position: relative;
-  margin-bottom: 0.5rem;
   p {
     margin: 0 0 6px 0;
   }

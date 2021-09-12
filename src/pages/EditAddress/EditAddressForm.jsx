@@ -6,6 +6,7 @@ import * as S from './styles'
 import useAddAddress from '../../services/useAddAddress'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
+import { Toast } from '../../components/Toast'
 import URL_BASE from '../../constants/urlBase'
 
 const EditAddressForm = () => {
@@ -28,7 +29,10 @@ const EditAddressForm = () => {
         setForm({ street: response.data.address.street, number: response.data.address.number, apartment: response.data.address.apartment, neighbourhood: response.data.address.neighbourhood, city: response.data.address.city, state: response.data.address.state })
       })
       .catch((err) => {
-        alert(err.response)
+        Toast.fire({
+          icon: 'error',
+          title: err.response,
+        })
       })
   }
 

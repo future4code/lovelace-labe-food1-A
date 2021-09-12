@@ -27,11 +27,11 @@ export const InputSearch = styled.input`
   box-sizing: border-box;
   border: none;
   outline: none;
-  ::-webkit-input-placeholder { 
+  ::-webkit-input-placeholder {
     color:#d0d0d0;
     font-size: 1rem;
   }
-  input:-moz-placeholder { 
+  input:-moz-placeholder {
     color:#d0d0d0;
     font-size: 1rem;
   }
