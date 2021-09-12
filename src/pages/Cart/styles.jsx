@@ -60,17 +60,28 @@ export const RestaurantInfos = styled.div`
 `;
 
 export const EmptyCart = styled.div`
-  height: 4rem;
   display: flex;
+  height: 100%;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  img {
+    height: 50px;
+  }
+
+  p {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #e86e5a;
+  }
 `;
 
 export const CardsContainer = styled.div`
   width: 344px;
   margin: 1rem auto;
   padding: 0 1rem;
-  
+
 `;
 
 export const PaymentContainer = styled.div`
@@ -90,10 +101,13 @@ export const Shipping = styled.div`
   }
 `;
 
-export const Subtotal = styled.div`
-  box-shadow: border-box;
+export const PriceContainer = styled.div`
+  margin-bottom: 2rem;
+`
+
+export const Price = styled.div`
   width: 328px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto .5rem;
   display: flex;
   justify-content: space-between;
   span {
@@ -106,7 +120,6 @@ export const Subtotal = styled.div`
 `;
 
 export const PaymentMethod = styled.div`
-  /* box-shadow: border-box; */
   flex-direction: column;
   width: 328px;
   margin: 0 auto 1rem;

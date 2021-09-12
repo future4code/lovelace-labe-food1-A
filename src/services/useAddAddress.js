@@ -1,6 +1,7 @@
 import axios from "axios"
 import URL_BASE from '../constants/urlBase'
 import { useCoordinator } from '../hooks/useCoordinator'
+import { Toast } from '../components/Toast'
 
 const useAddAddress = (body) => {
   const goTo = useCoordinator()
@@ -18,7 +19,10 @@ const useAddAddress = (body) => {
         setIsLoading(false)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        Toast.fire({
+          icon: 'error',
+          title: err.response.data.message,
+        })
         setIsLoading(false)
       })
   }

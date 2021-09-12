@@ -6,6 +6,7 @@ import * as S from './styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import useUpdateProfile from '../../services/useUpdateProfile'
 import axios from 'axios'
+import { Toast } from '../../components/Toast'
 import URL_BASE from '../../constants/urlBase'
 
 const EditProfileForm = () => {
@@ -28,11 +29,13 @@ const EditProfileForm = () => {
         setForm({ name: response.data.user.name, email: response.data.user.email, cpf: response.data.user.cpf})
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        Toast.fire({
+          icon: 'error',
+          title: err.response.data.message,
+        })
       })
     }
-    
-  console.log(form)
+
   useEffect(() => {
     getProfile()
   }, [])

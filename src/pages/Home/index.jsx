@@ -1,47 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import OrderInProgressCard from '../../components/OrderInProgressCard';
-import * as S from './styles';
-import search from '../../assets/search.svg';
-import { useCoordinator } from '../../hooks/useCoordinator';
-import RestaurantCard from '../../components/RestaurantCard';
-import useGetRestaurants from '../../services/useGetRestaurants';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import { categoriesRestaurants } from '../../constants/categories';
-import useForm from '../../hooks/useForm';
-import useProtectedPage from '../../hooks/useProtectedPage';
+import React, { useEffect, useState } from 'react'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
+import OrderInProgressCard from '../../components/OrderInProgressCard'
+import * as S from './styles'
+import search from '../../assets/search.svg'
+import { useCoordinator } from '../../hooks/useCoordinator'
+import RestaurantCard from '../../components/RestaurantCard'
+import useGetRestaurants from '../../services/useGetRestaurants'
+import { GlobalContext } from '../../contexts/GlobalContext'
+import { categoriesRestaurants } from '../../constants/categories'
+import useForm from '../../hooks/useForm'
+import useProtectedPage from '../../hooks/useProtectedPage'
+import { useOrderInProgress } from '../../services/useOrderInProgress'
 
 const Home = () => {
   useProtectedPage()
+  const { orderInProgress, getOrderInProgress } = useOrderInProgress()
 
-  const { restaurants } = React.useContext(GlobalContext);
-  const [form, handleInputChange, clear] = useForm({ search: '' });
-  const token = localStorage.getItem('token');
+  const { restaurants } = React.useContext(GlobalContext)
+  const [form, handleInputChange, clear] = useForm({ search: '' })
+  const token = localStorage.getItem('token')
 
   const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
-    useState('Todos');
+    useState('Todos')
 
   const RestaurantsSearch = restaurants?.filter((restaurant) =>
     restaurant.name.startsWith(form.search)
-  );
+  )
 
-  const { getRestaurants, error } = useGetRestaurants();
-  const goTo = useCoordinator();
+  const { getRestaurants, error } = useGetRestaurants()
+  const goTo = useCoordinator()
 
   const filteredRestaurants = (category) => {
-    return restaurants?.filter((restaurant) => restaurant.category === category);
-  };
+    return restaurants?.filter((restaurant) => restaurant.category === category)
+  }
 
   useEffect(() => {
-    getRestaurants(token);
-  }, []);
+    getRestaurants(token)
+    getOrderInProgress()
+  }, [])
 
   return (
     <S.Home>
       <Header backButton title={'Rappi4'} />
       <main>
-        <OrderInProgressCard/>
+        {orderInProgress && Object.keys(orderInProgress).length > 0 && (
+          <OrderInProgressCard data={orderInProgress} />
+        )}
         <S.SearchBar>
           <img src={search} alt='Pesquisar' />
           <form autoComplete='off'>
@@ -111,9 +116,9 @@ const Home = () => {
           </>
         )}
       </main>
-      <Footer page='home'/>
+      <Footer page='home' />
     </S.Home>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

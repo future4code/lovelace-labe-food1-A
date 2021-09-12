@@ -9,12 +9,13 @@ export const OrderCard = styled.div`
   justify-content: center;
   height: 7.375rem;
   align-items: center;
+  z-index: 10;
 
 `
 export const InnerContainer = styled.div`
   display: flex;
   margin: 0 1.5rem;
-  
+
   p{
     width: 256px;
     margin: 0.5rem 0;

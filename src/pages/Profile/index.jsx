@@ -9,6 +9,7 @@ import { useCoordinator } from '../../hooks/useCoordinator';
 import useGetProfile from '../../services/useGetProfile';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import useProtectedPage from '../../hooks/useProtectedPage'
+import { Toast } from '../../components/Toast'
 
 const Profile = () => {
   useProtectedPage()
@@ -28,7 +29,10 @@ const Profile = () => {
         setOrders(response.data.orders);
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        Toast.fire({
+          icon: 'error',
+          title: err.response.data.message,
+        })
       });
   };
 
@@ -47,7 +51,7 @@ const Profile = () => {
         <S.OrderHistoryCard key={index}>
           <p>{order.restaurantName}</p>
           <p>{convertDate(order.createdAt)}</p>
-          <p>SUBTOTAL R${order.totalPrice},00</p>
+          <p>SUBTOTAL R${order.totalPrice.toFixed(2).replace(/\./g, ',')}</p>
         </S.OrderHistoryCard>
       ))
     ) : (

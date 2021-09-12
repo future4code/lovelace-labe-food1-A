@@ -12,7 +12,7 @@ import Footer from '../../components/Footer';
 
 const RestaurantDetails = () => {
   useProtectedPage();
-  const { setCart, cart } = React.useContext(GlobalContext);
+  const { setCart, cart, cartProducts, setCartProducts } = React.useContext(GlobalContext);
   const { restaurantId } = useParams();
   const { getDetails, data } = useGetDetails();
 
@@ -50,6 +50,12 @@ const RestaurantDetails = () => {
       (product) => product.id !== id
     );
     setCart({ products: filteredSpreadCart });
+
+    const spreadCartProducts = cartProducts;
+    const filteredSpreadCartProducts = spreadCartProducts.filter(
+      (product) => product.id !== id
+    );
+    setCartProducts(filteredSpreadCartProducts);
   };
 
   const [open, setOpen] = React.useState(false);
@@ -82,7 +88,7 @@ const RestaurantDetails = () => {
               restaurantId={restaurantId}
               data={data}
             />
-            <S.RestaurantCover>
+            <S.RestaurantCover imgUrl={data.logoUrl}>
               <img src={data.logoUrl} alt={data.name} />
             </S.RestaurantCover>
 
