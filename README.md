@@ -17,9 +17,6 @@ Nome dos integrantes:
 
 Prints:
 
-![image](https://user-images.githubusercontent.com/66282957/133003984-3b83a37a-f102-4926-9430-96050752ca83.png)
-![image](https://user-images.githubusercontent.com/66282957/133003996-bf7018e5-2a81-4978-bf7f-ed0696e71352.png)
-![image](https://user-images.githubusercontent.com/66282957/133004003-4db51173-688f-4b4f-b8fa-f6db60b6d06f.png)
 ![image](https://user-images.githubusercontent.com/73656973/133023494-cbaf260a-e818-4ac8-b357-b37a7e78ae8a.png)
 ![image](https://user-images.githubusercontent.com/73656973/133023525-2fa9e0d5-d60d-4627-a383-20ac030d6dee.png)
 ![image](https://user-images.githubusercontent.com/73656973/133023554-8e0077f0-53bc-4169-ba2a-e25a81218b79.png)
