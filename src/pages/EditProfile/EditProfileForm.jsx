@@ -37,7 +37,7 @@ const EditProfileForm = () => {
     }
 
 
-  useEffect(() => {
+  React.useEffect(() => {
     getProfile()
   }, [])
 
