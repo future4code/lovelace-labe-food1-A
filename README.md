@@ -4,12 +4,26 @@ LAYOUT: Rappi
 
 # Rappi4
 
-Nome dos integrantes: 
-- Cleiton Silva Soares
-- Felipe Gushiken
-- Hugo Sousa Oliveira Brito
-- João Pedro Correia Barros
-- Vinicius Silva de Oliveira
+## INTEGRANTES
+
+Integrante      | Link do GITHUB
+--------- | ------
+[<img src="https://avatars.githubusercontent.com/u/73656973?v=4" width="75px;"/>](https://github.com/cleitonsoares-s) | [Cleiton Soares](https://github.com/cleitonsoares-s)
+[<img src="https://avatars.githubusercontent.com/u/85198402?v=4" width="75px;"/>](https://github.com/FelipeGushiken) | [Felipe Gushiken](https://github.com/FelipeGushiken)
+[<img src="https://avatars.githubusercontent.com/u/85254026?v=4" width="75px;"/>](https://github.com/hgo34) | [Hugo Brito](https://github.com/hgo34)
+[<img src="https://avatars.githubusercontent.com/u/66282957?v=4" width="75px;"/>](https://github.com/joaocorreia92) | [João Pedro Correia](https://github.com/joaocorreia92)
+[<img src="https://avatars.githubusercontent.com/u/52759918?v=4" width="75px;"/>](https://github.com/vinnivso) | [Vinícius Oliveira](https://github.com/vinnivso)
+
+## O que temos aqui?
+- [x]  React
+- [x]  Styled-Components
+- [x]  Material-UI
+- [x]  Axios
+- [x]  React-router-dom
+
+## Starting Dev Environment
+1. Run npm install
+2. Run npm start
 
 #### Surge: 
 
