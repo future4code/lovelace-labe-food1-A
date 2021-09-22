@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Projeto em grupo para fechamento do módulo de Frontend do curso de Desenvolvimento Full-stack da Labenu - turma Lovelace.
 
-## Available Scripts
+LAYOUT: Rappi
 
-In the project directory, you can run:
+# Rappi4
 
-### `npm start`
+## INTEGRANTES
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Integrante      | Link do GITHUB
+--------- | ------
+[<img src="https://avatars.githubusercontent.com/u/73656973?v=4" width="75px;"/>](https://github.com/cleitonsoares-s) | [Cleiton Soares](https://github.com/cleitonsoares-s)
+[<img src="https://avatars.githubusercontent.com/u/85198402?v=4" width="75px;"/>](https://github.com/FelipeGushiken) | [Felipe Gushiken](https://github.com/FelipeGushiken)
+[<img src="https://avatars.githubusercontent.com/u/85254026?v=4" width="75px;"/>](https://github.com/hgo34) | [Hugo Brito](https://github.com/hgo34)
+[<img src="https://avatars.githubusercontent.com/u/66282957?v=4" width="75px;"/>](https://github.com/joaocorreia92) | [João Pedro Correia](https://github.com/joaocorreia92)
+[<img src="https://avatars.githubusercontent.com/u/52759918?v=4" width="75px;"/>](https://github.com/vinnivso) | [Vinícius Oliveira](https://github.com/vinnivso)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## O que temos aqui?
+- [x]  React
+- [x]  Styled-Components
+- [x]  Material-UI
+- [x]  Axios
+- [x]  React-router-dom
 
-### `npm test`
+## Starting Dev Environment
+1. Run npm install
+2. Run npm start
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Surge: 
 
-### `npm run build`
+### http://rappi4-lovelace.surge.sh/
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prints:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![image](https://user-images.githubusercontent.com/73656973/133023494-cbaf260a-e818-4ac8-b357-b37a7e78ae8a.png)
+![image](https://user-images.githubusercontent.com/73656973/133023525-2fa9e0d5-d60d-4627-a383-20ac030d6dee.png)
+![image](https://user-images.githubusercontent.com/73656973/133023554-8e0077f0-53bc-4169-ba2a-e25a81218b79.png)
+![image](https://user-images.githubusercontent.com/73656973/133023589-b7526f9b-88de-4ff8-86f7-72bd11729158.png)
+![image](https://user-images.githubusercontent.com/73656973/133023632-791c4d0c-de40-49d5-8b76-9fb0d728e4f7.png)
+![image](https://user-images.githubusercontent.com/73656973/133023649-7def075f-23de-4f0d-98c5-b7c2caf0eef3.png)
+![image](https://user-images.githubusercontent.com/73656973/133023665-b8a9f342-60a2-4e21-96ca-c5424c01ae6b.png)
+![image](https://user-images.githubusercontent.com/73656973/133023682-eaa2c99a-e414-4e36-99e3-9b7f65ca93e8.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
